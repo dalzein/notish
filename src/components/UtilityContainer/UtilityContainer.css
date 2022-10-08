@@ -1,0 +1,14 @@
+.utility-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  float: right;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+
+.utility-container.show {
+  opacity: 1;
+}

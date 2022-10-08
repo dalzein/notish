@@ -1,0 +1,14 @@
+.error-label {
+  font-size: 0.75rem;
+  transition: all 0.2s linear;
+}
+
+.error-icon {
+  padding-right: 0.25rem;
+  color: var(--red);
+}
+
+.error-label.hidden {
+  visibility: hidden;
+  opacity: 0;
+}

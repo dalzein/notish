@@ -1,0 +1,31 @@
+.note-text {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.title,
+.content {
+  width: 100%;
+  border: none;
+  padding: 0.25rem;
+  outline: none;
+  font-family: inherit;
+  resize: none;
+  color: var(--foreground);
+  margin: 0;
+  overflow: hidden;
+}
+
+.title {
+  height: calc(37rem / 16);
+  font-weight: 700;
+  font-size: 1.25rem;
+  background-color: var(--transparent);
+}
+
+.content {
+  height: 1rem;
+  font-size: 1rem;
+  background-color: var(--transparent);
+}

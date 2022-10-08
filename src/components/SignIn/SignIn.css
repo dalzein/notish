@@ -1,0 +1,32 @@
+.modal-tabs {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+
+.modal-tabs button {
+  font-size: 1rem;
+  color: var(--foreground-secondary);
+  border: none;
+  border-bottom: 1px solid var(--accent-2);
+  background-color: transparent;
+  margin: 0.25rem;
+  width: 50%;
+  height: 2.125rem;
+  transition: all 0.2s linear;
+}
+
+.modal-tabs button.active {
+  color: var(--foreground);
+  border-color: var(--foreground);
+}
+
+.modal-tabs button:hover {
+  border-color: var(--foreground);
+  color: var(--foreground);
+}
+
+.modal-form {
+  margin: 0.5rem 0.25rem;
+}

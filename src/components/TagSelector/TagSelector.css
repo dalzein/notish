@@ -1,0 +1,74 @@
+.tag-input {
+  font-size: 0.85rem;
+  outline: none;
+  color: var(--foreground);
+  background-color: var(--background);
+  border: none;
+  border-bottom: 1px solid var(--accent-2);
+  padding-bottom: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.add-new-tag {
+  padding: 0.5rem 0.5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-tag-button {
+  height: 1.75rem;
+  width: 1.75rem;
+  border: 1px solid var(--accent-2);
+  background-color: var(--background);
+  color: var(--foreground);
+  border-radius: 0.375rem;
+}
+
+.add-tag-button:hover {
+  background-color: var(--foreground);
+  border-color: var(--foreground);
+  color: var(--background);
+}
+
+.existing-tags {
+  border-bottom: 1px solid var(--accent-2);
+  padding: 0.25rem 0.5rem;
+}
+
+.existing-tag {
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  color: var(--foreground-secondary);
+  transition: all 0.2s linear;
+}
+
+.existing-tag:hover {
+  color: var(--foreground);
+}
+
+.existing-tag.active {
+  color: var(--foreground);
+}
+
+.tag-name {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clear-tag {
+  margin-left: 0.5rem;
+  color: var(--foreground-secondary);
+}
+
+.clear-tag:hover {
+  color: var(--foreground);
+}

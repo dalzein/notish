@@ -1,0 +1,34 @@
+.create-area {
+  margin-top: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.create-note {
+  position: relative;
+  max-width: 25rem;
+  margin: auto;
+  background-color: var(--background);
+  border: 1px solid var(--accent-2);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.utility-wrapper {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.note-limit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-limit p {
+  text-align: center;
+}
+
+.note-limit i {
+  margin-bottom: 0.5rem;
+}
