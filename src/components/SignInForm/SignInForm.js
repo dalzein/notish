@@ -18,7 +18,7 @@ function SignInForm() {
 
   // Validate email string and clear current error state if valid
   useEffect(() => {
-    if (email !== "" && !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    if (email !== "" && !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       setSignInErrors((currentErrors) => ({
         ...currentErrors,
         email: "Email address format must be valid",

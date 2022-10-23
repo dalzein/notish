@@ -13,7 +13,7 @@ function ResetPassword() {
   useEffect(() => {
     if (
       passwordResetEmail !== "" &&
-      !passwordResetEmail.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)
+      !passwordResetEmail.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)
     ) {
       setPasswordResetError("Email address format must be valid");
     } else {

@@ -37,7 +37,7 @@ function SignUpForm() {
 
   // Validate email string
   useEffect(() => {
-    if (email !== "" && !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+    if (email !== "" && !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       setErrors((currentErrors) => ({
         ...currentErrors,
         email: "Email address format must be valid",
