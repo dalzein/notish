@@ -21,6 +21,7 @@
   height: 2.125rem;
   padding: 0 0.5rem;
   margin: 0.25rem;
+  white-space: nowrap;
 }
 
 .delete-button:hover {
