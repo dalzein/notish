@@ -1,18 +1,18 @@
+import { onAuthStateChanged } from "firebase/auth";
 import React, { useEffect, useState } from "react";
-import Header from "../Header/Header";
-import CreateArea from "../CreateArea/CreateArea";
-import NoteFilter from "../NoteFilter/NoteFilter";
+import { auth } from "../../firebase/firebase";
 import {
-  createNotesInFirestore,
   createNoteInFirestore,
+  createNotesInFirestore,
+  deleteNoteFromFirestore,
   getNotesFromFirestore,
   updateNoteInFirestore,
-  deleteNoteFromFirestore,
   updateNotePositionsInFirestore,
 } from "../../firebase/firebase-db";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import CreateArea from "../CreateArea/CreateArea";
+import Header from "../Header/Header";
 import NoteBoard from "../NoteBoard/NoteBoard";
+import NoteFilter from "../NoteFilter/NoteFilter";
 
 function App() {
   const localStorageKey = "localNotes";

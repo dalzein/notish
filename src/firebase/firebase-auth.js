@@ -46,7 +46,7 @@ export const resetPassword = (email) =>
 
 // Google OAuth sign in
 export const signInWithGoogle = () => {
-  // We'll set a flag in local storage so that when the user is redirected back to the site the app knows to wait for the auth result (which takes a while for some reason)
+  // We'll set a flag in local storage so that when the browser is redirected back to the site the app knows to wait for the auth result (which takes a while for some reason)
   localStorage.setItem("redirected", "true");
   signInWithRedirect(auth, provider);
 };

@@ -24,7 +24,7 @@ function SignUpForm() {
     if (name !== "" && !name.match(/^[A-Za-z]+$/)) {
       setErrors((currentErrors) => ({
         ...currentErrors,
-        name: "Name can only container letters",
+        name: "Name can only contain letters",
       }));
     } else {
       setErrors((currentErrors) => ({

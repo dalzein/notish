@@ -13,7 +13,8 @@ function NoteFilter(props) {
   }
 
   return (
-    props.hasNotes && (
+    props.hasNotes &&
+    props.tags?.length > 0 && (
       <div className="note-filter">
         <button
           name="all"
@@ -24,19 +25,18 @@ function NoteFilter(props) {
           <i className="fa-solid fa-tags"></i>
           All
         </button>
-        {props.tags?.length > 0 &&
-          props.tags.map((tag, index) => (
-            <button
-              key={index}
-              name={tag}
-              className={`${props.currentTagFilter === tag ? "active" : ""}`}
-              type="button"
-              onClick={handleClick}
-            >
-              <i className="fa-solid fa-tag"></i>
-              {tag}
-            </button>
-          ))}
+        {props.tags.map((tag, index) => (
+          <button
+            key={index}
+            name={tag}
+            className={`${props.currentTagFilter === tag ? "active" : ""}`}
+            type="button"
+            onClick={handleClick}
+          >
+            <i className="fa-solid fa-tag"></i>
+            {tag}
+          </button>
+        ))}
       </div>
     )
   );

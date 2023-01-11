@@ -5,10 +5,8 @@
   height: 1.75rem;
   outline: none;
   border: none;
-  border-radius: 1rem;
 }
 
 .icon-button:hover {
-  color: var(--background);
-  background-color: var(--foreground);
+  color: var(--foreground);
 }

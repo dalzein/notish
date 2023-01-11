@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./Header.css";
-import SignIn from "../SignIn/SignIn";
-import { signOutUser } from "../../firebase/firebase-auth";
 import { auth } from "../../firebase/firebase";
-import Modal from "../Modal/Modal";
+import { signOutUser } from "../../firebase/firebase-auth";
 import Guide from "../Guide/Guide";
+import Modal from "../Modal/Modal";
+import SignIn from "../SignIn/SignIn";
+import "./Header.css";
 
 function Header(props) {
   const [showSignInModal, setShowSignInModal] = useState(false);
@@ -66,12 +66,6 @@ function Header(props) {
               <i className="fa-solid fa-rotate fa-spin fa-xl"></i>
             </div>
           )}
-          <button
-            className="guide-button"
-            onClick={() => setShowGuideModal(true)}
-          >
-            <i className="fa-solid fa-question"></i>
-          </button>
           {!props.userId && (
             <Modal
               show={showSignInModal}

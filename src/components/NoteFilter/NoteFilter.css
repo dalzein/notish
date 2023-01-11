@@ -16,8 +16,8 @@
   margin: 0.5rem 0.5rem;
   font-size: 0.85rem;
   text-decoration: none;
-  background-color: var(--background);
-  border: 1px solid var(--accent-2);
+  border: none;
+  background-color: var(--accent-1);
   color: var(--foreground-secondary);
   height: 2.125rem;
   padding: 0 0.75rem;
@@ -26,9 +26,8 @@
 
 .note-filter button.active,
 .note-filter button:hover {
-  border-color: var(--foreground);
-  color: var(--background);
-  background-color: var(--foreground);
+  color: var(--foreground);
+  background-color: var(--accent-2);
 }
 
 .note-filter .fa-tags,

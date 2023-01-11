@@ -1,6 +1,6 @@
 .note {
   position: absolute;
-  background-color: rgba(34, 34, 34, 0.8);
+  background-color: var(--accent-1);
   border-radius: 0.375rem;
   width: 15rem;
   transition: all 0.2s linear;
@@ -27,7 +27,7 @@
 .delete-button:hover {
   border-color: var(--red);
   color: var(--red);
-  background-color: var(--background);
+  background-color: transparent;
 }
 
 .note-screen {

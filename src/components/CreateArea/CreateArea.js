@@ -64,8 +64,6 @@ function CreateArea(props) {
         tag: "",
         colour: "accent-2",
       });
-    } else {
-      submitNote();
     }
   }
 
@@ -141,7 +139,7 @@ function CreateArea(props) {
         onClose={() => setShowNoteLimitModal(false)}
       >
         <div className="note-limit">
-          <i className="fa-solid fa-circle-exclamation"></i>
+          <i className="fa-solid fa-circle-exclamation fa-2x"></i>
           <p>You've reached the maximum number of notes we can hold!</p>
         </div>
       </Modal>

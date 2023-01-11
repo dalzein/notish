@@ -2,7 +2,7 @@
   font-size: 0.85rem;
   outline: none;
   color: var(--foreground);
-  background-color: var(--background);
+  background-color: transparent;
   border: none;
   border-bottom: 1px solid var(--accent-2);
   padding-bottom: 0.25rem;
@@ -20,16 +20,14 @@
 .add-tag-button {
   height: 1.75rem;
   width: 1.75rem;
-  border: 1px solid var(--accent-2);
-  background-color: var(--background);
+  border: none;
+  background-color: var(--accent-2);
   color: var(--foreground);
   border-radius: 0.375rem;
 }
 
 .add-tag-button:hover {
-  background-color: var(--foreground);
-  border-color: var(--foreground);
-  color: var(--background);
+  background-color: var(--accent-3);
 }
 
 .existing-tags {
@@ -65,7 +63,7 @@
 }
 
 .clear-tag {
-  margin-left: 0.5rem;
+  margin-left: 0.25rem;
   color: var(--foreground-secondary);
 }
 

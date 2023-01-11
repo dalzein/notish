@@ -1,6 +1,7 @@
 .note-board {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   margin: 0 1.5rem 1.5rem 1.5rem;
 }
@@ -13,4 +14,19 @@
   .note-board {
     margin: 0 0.5rem 1.5rem 0.5rem;
   }
+}
+
+.no-notes {
+  text-align: center;
+  color: var(--accent-3);
+  margin-top: 0.5rem;
+  max-width: 400px;
+}
+
+.no-notes .fa-solid {
+  margin-bottom: 1rem;
+}
+
+.no-notes h2 {
+  margin-bottom: 0.5rem;
 }

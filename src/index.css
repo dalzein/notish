@@ -7,11 +7,12 @@
   --purple: #bd93f9;
   --red: #ff5555;
   --yellow: #f1fa8c;
-  --background: #222;
+  --background: #111;
   --foreground: #fff;
-  --foreground-secondary: #aaa;
-  --accent-1: #333;
-  --accent-2: #555;
+  --foreground-secondary: #888;
+  --accent-1: #222;
+  --accent-2: #333;
+  --accent-3: #444;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 

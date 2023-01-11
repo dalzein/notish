@@ -203,6 +203,16 @@ function NoteBoard(props) {
 
   return (
     <div className="note-board">
+      {!props.notes.length && (
+        <div className="no-notes">
+          <i className="fa-solid fa-arrow-up-long fa-2x"></i>
+          <h2>Create a note above!</h2>
+          <h2>
+            You'll be able to edit the text, colour and tags of your notes. You
+            can also re-order them by clicking and dragging!
+          </h2>
+        </div>
+      )}
       <div
         className="note-masonry-wrapper"
         style={{
