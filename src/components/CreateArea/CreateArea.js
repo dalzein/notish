@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import "./CreateArea.css";
 import { nanoid } from "nanoid";
-import NoteText from "../NoteText/NoteText";
-import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
-import TagSelector from "../TagSelector/TagSelector";
+import React, { useState } from "react";
 import ColourSelector from "../ColourSelector/ColourSelector";
 import IconButton from "../IconButton/IconButton";
-import UtilityContainer from "../UtilityContainer/UtilityContainer";
-import NoteTag from "../NoteTag/NoteTag";
 import Modal from "../Modal/Modal";
+import NoteTag from "../NoteTag/NoteTag";
+import NoteText from "../NoteText/NoteText";
+import TagSelector from "../TagSelector/TagSelector";
+import UtilityContainer from "../UtilityContainer/UtilityContainer";
+import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
+import "./CreateArea.css";
 
 function CreateArea(props) {
   const [isActive, setIsActive] = useState(false);
@@ -67,7 +67,7 @@ function CreateArea(props) {
     }
   }
 
-  function handleFocus(e) {
+  function handleFocus() {
     setIsActive(true);
   }
 

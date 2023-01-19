@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { signOutUser } from "../../firebase/firebase-auth";
 import Guide from "../Guide/Guide";
@@ -12,11 +12,9 @@ function Header(props) {
     window.localStorage.getItem("dismissGuide") ? false : true
   );
 
-  useEffect(() => {
-    if (props.userId) {
-      setShowSignInModal(false);
-    }
-  }, [props.userId]);
+  if (props.userId && showSignInModal) {
+    setShowSignInModal(false);
+  }
 
   function handleGuideDismiss() {
     setShowGuideModal(false);

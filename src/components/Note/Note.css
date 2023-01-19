@@ -14,7 +14,7 @@
 
 .delete-button {
   border-radius: 0.2rem;
-  border: 1px solid var(--red);
+  border: none;
   background-color: var(--red);
   color: var(--background);
   font-size: 1rem;
@@ -25,9 +25,7 @@
 }
 
 .delete-button:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background-color: transparent;
+  background-color: var(--foreground);
 }
 
 .note-screen {

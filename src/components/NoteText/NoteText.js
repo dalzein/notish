@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "./NoteText.css";
 
 function NoteText(props) {
@@ -51,7 +51,7 @@ function NoteText(props) {
           name="title"
           onChange={handleChange}
           value={props.title}
-          placeholder="Title"
+          placeholder="Title..."
           spellCheck="false"
           ref={titleRef}
           onKeyDown={(e) => e.key === "Enter" && e.preventDefault()}
@@ -65,7 +65,7 @@ function NoteText(props) {
           name="content"
           onChange={handleChange}
           value={props.content}
-          placeholder="Take a note!"
+          placeholder="Take a note..."
           spellCheck="false"
           ref={contentRef}
         />

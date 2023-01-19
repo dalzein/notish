@@ -19,12 +19,11 @@
 .no-notes {
   text-align: center;
   color: var(--accent-3);
-  margin-top: 0.5rem;
   max-width: 400px;
 }
 
 .no-notes .fa-solid {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .no-notes h2 {

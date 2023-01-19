@@ -3,7 +3,7 @@ import SignInForm from "../SignInForm/SignInForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import "./SignIn.css";
 
-function SignIn(props) {
+function SignIn() {
   const [activeTab, setActiveTab] = useState("signin");
 
   return (

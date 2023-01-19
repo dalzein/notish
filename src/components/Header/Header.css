@@ -48,13 +48,13 @@ nav {
   border-radius: 0.375rem;
   height: 2.125rem;
   padding: 0 0.5rem;
-  border: 1px solid var(--accent-2);
+  border: none;
   color: var(--foreground);
-  background-color: var(--accent-1);
+  background-color: var(--accent-2);
 }
 
 .header-button:hover {
-  background-color: var(--accent-2);
+  background-color: var(--accent-3);
 }
 
 .auth-redirect-spinner {

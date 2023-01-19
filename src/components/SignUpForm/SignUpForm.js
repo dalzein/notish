@@ -62,7 +62,7 @@ function SignUpForm() {
       setErrors((currentErrors) => ({
         ...currentErrors,
         password:
-          "Password must be 6-15 characters long and contain at least one uppercase letter, one number and one symbol",
+          "Password must be 6-15 characters long and contain at least one number, symbol and uppercase letter",
       }));
     } else {
       setErrors((currentErrors) => ({
