@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ColourSelector from "../ColourSelector/ColourSelector";
 import NoteTag from "../NoteTag/NoteTag";
 import NoteText from "../NoteText/NoteText";
@@ -111,7 +111,7 @@ function Note(props) {
       if (!mouseDragData.dragging) {
         setIsActive(true);
       } else {
-        props.onNoteDrag(props.note.clientId, e.pageX, e.pageY, true);
+        props.updateNotePositions();
       }
 
       setMouseDragData((previousValue) => ({

@@ -1,4 +1,10 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import Note from "../Note/Note";
 import "./NoteBoard.css";
 
@@ -8,7 +14,13 @@ function NoteBoard(props) {
   const gutter = 20;
   const [columnCount, setColumnCount] = useState(1);
   const [displayHeight, setDisplayHeight] = useState(0);
-  const notePositions = props.notes.map((note) => note.clientId);
+  const [notePositions, setNotePositions] = useState(
+    props.notes.map((note) => note.clientId)
+  );
+
+  useEffect(() => {
+    setNotePositions(props.notes.map((note) => note.clientId));
+  }, [props.notes]);
 
   // Determine the number of columns we can fit on resize
   useLayoutEffect(() => {
@@ -70,7 +82,7 @@ function NoteBoard(props) {
   }, [arrangeNotes, columnCount]);
 
   // Unholy custom note dragging algorithm - masonry sorting in real-time as note is being moved
-  function handleNoteDrag(clientId, x, y, updatePositions = false) {
+  function handleNoteDrag(clientId, x, y) {
     const notes = document.getElementsByClassName("note");
     const targetNote = document.getElementsByClassName("dragging")[0];
     const columnHeights = [];
@@ -176,14 +188,17 @@ function NoteBoard(props) {
 
     // If the note was dragged outside of the note area move it to the end
     if (moveTargetToEnd) newPositionIndex = notes.length - 1;
-
-    if (updatePositions) {
-      const newPositions = notePositions;
+    setNotePositions((previousValues) => {
+      const newPositions = previousValues;
       const index = newPositions.indexOf(clientId);
       newPositions.splice(index, 1);
       newPositions.splice(newPositionIndex, 0, clientId);
-      props.updateNotePositions(notePositions);
-    }
+      return newPositions;
+    });
+  }
+
+  function updateNotePositions() {
+    props.updateNotePositions(notePositions);
   }
 
   return (
@@ -191,11 +206,11 @@ function NoteBoard(props) {
       {!props.notes.length && (
         <div className="no-notes">
           <i className="fa-solid fa-arrow-up-long fa-2x"></i>
-          <h2>Create a note!</h2>
-          <p>
+          <h2>Create a note above!</h2>
+          <h2>
             You'll be able to edit the text, colour and tags of your notes. You
             can also re-order them by clicking and dragging!
-          </p>
+          </h2>
         </div>
       )}
       <div
@@ -224,6 +239,7 @@ function NoteBoard(props) {
               ]}
               arrangeNotes={arrangeNotes}
               onNoteDrag={handleNoteDrag}
+              updateNotePositions={updateNotePositions}
             />
           );
         })}
