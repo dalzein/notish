@@ -6,7 +6,7 @@
   margin-top: 1rem;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid var(--accent-2);
+  border-bottom: 1px solid var(--accent-3);
   outline: none;
 }
 
@@ -55,5 +55,5 @@
 .line {
   margin: 0.5rem;
   width: 100%;
-  border-bottom: 1px solid var(--accent-2);
+  border-bottom: 1px solid var(--accent-3);
 }

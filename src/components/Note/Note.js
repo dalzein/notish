@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ColourSelector from "../ColourSelector/ColourSelector";
 import NoteTag from "../NoteTag/NoteTag";
 import NoteText from "../NoteText/NoteText";
@@ -8,6 +8,7 @@ import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
 import "./Note.css";
 
 function Note(props) {
+  const noteRef = useRef(null);
   const isTouchScreen =
     "maxTouchPoints" in navigator && navigator.maxTouchPoints > 0;
   const [mouseOver, setMouseOver] = useState(false);
@@ -22,8 +23,6 @@ function Note(props) {
     yStart: 0,
     xOffset: 0,
     yOffset: 0,
-    x: 0,
-    y: 0,
     down: false,
     containerX: 0,
     containerY: 0,
@@ -94,11 +93,14 @@ function Note(props) {
         deltaY > mouseDragData.mouseDeltaThreshold ||
         mouseDragData.dragging
       ) {
+        noteRef.current.style.transform = `translate(${
+          e.pageX - mouseDragData.xOffset - mouseDragData.containerX - 1
+        }px, ${
+          e.pageY - mouseDragData.yOffset - mouseDragData.containerY - 1
+        }px)`;
         props.onNoteDrag(props.note.clientId, e.pageX, e.pageY);
         setMouseDragData((previousValue) => ({
           ...previousValue,
-          x: e.pageX,
-          y: e.pageY,
           dragging: true,
         }));
       }
@@ -111,7 +113,7 @@ function Note(props) {
       if (!mouseDragData.dragging) {
         setIsActive(true);
       } else {
-        props.updateNotePositions();
+        props.onNoteDrag(props.note.clientId, e.pageX, e.pageY, true);
       }
 
       setMouseDragData((previousValue) => ({
@@ -136,10 +138,14 @@ function Note(props) {
       document.removeEventListener("touchend", handleMouseUp);
     };
   }, [
+    mouseDragData.containerX,
+    mouseDragData.containerY,
     mouseDragData.down,
     mouseDragData.dragging,
     mouseDragData.mouseDeltaThreshold,
+    mouseDragData.xOffset,
     mouseDragData.xStart,
+    mouseDragData.yOffset,
     mouseDragData.yStart,
     props,
   ]);
@@ -195,8 +201,6 @@ function Note(props) {
       yStart: e.pageY,
       xOffset: e.pageX - noteX,
       yOffset: e.pageY - noteY,
-      x: e.pageX,
-      y: e.pageY,
       down: true,
     }));
   }
@@ -207,17 +211,13 @@ function Note(props) {
       style={{
         border: `1px solid var(--${props.note.colour})`,
         zIndex: zIndex,
-        transform: `translate(${
-          mouseDragData.x - mouseDragData.xOffset - mouseDragData.containerX - 1
-        }px, ${
-          mouseDragData.y - mouseDragData.yOffset - mouseDragData.containerY - 1
-        }px)`,
         transition: mouseDragData.down ? "none" : "all 0.2s linear",
       }}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
       onBlur={handleNoteBlur}
       tabIndex="-1"
+      ref={noteRef}
     >
       <div
         className={`note-screen ${isActive ? "hidden" : ""} ${
