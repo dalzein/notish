@@ -109,6 +109,10 @@ function Note(props) {
     function handleMouseUp(e) {
       e.preventDefault();
 
+      if (e.changedTouches && e.changedTouches.length) {
+        e = e.changedTouches[0];
+      }
+
       // If it didn't count as a drag, set focus, otherwise tell the parent to update the new note positions if they changed
       if (!mouseDragData.dragging) {
         setIsActive(true);
