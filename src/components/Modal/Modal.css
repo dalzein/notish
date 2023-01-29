@@ -9,10 +9,7 @@
   visibility: hidden;
   opacity: 0;
   transition: all 0.2s linear;
-  padding: 0rem 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 10vh 0.5rem 0 0;
 }
 
 .modal {
@@ -23,7 +20,7 @@
   margin: auto;
   min-width: 20rem;
   box-shadow: var(--shadow);
-  max-height: 90vh;
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;

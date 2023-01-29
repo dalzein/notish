@@ -220,7 +220,6 @@ function Note(props) {
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
       onBlur={handleNoteBlur}
-      tabIndex="-1"
       ref={noteRef}
     >
       <div

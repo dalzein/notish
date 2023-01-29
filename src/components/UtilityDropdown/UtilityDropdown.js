@@ -21,12 +21,9 @@ function UtilityDropdown(props) {
   }
 
   return (
-    <div onBlur={handleBlur} tabIndex="-1">
+    <div onBlur={handleBlur}>
       <IconButton icon={props.icon} onClick={handleClick} />
-      <div
-        className={`dropdown-menu ${showDropdownMenu ? "show" : ""}`}
-        tabIndex="-1"
-      >
+      <div className={`dropdown-menu ${showDropdownMenu ? "show" : ""}`}>
         {props.children}
       </div>
     </div>

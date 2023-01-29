@@ -99,7 +99,6 @@ function CreateArea(props) {
         className="create-note"
         onBlur={handleBlur}
         onFocus={handleFocus}
-        tabIndex="-1"
         style={{
           border: `1px solid var(--${isActive ? note.colour : "accent-2"})`,
         }}
