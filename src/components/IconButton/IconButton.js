@@ -3,7 +3,7 @@ import "./IconButton.css";
 
 function IconButton(props) {
   return (
-    <button className="icon-button" onClick={props.onClick} tabIndex="-1">
+    <button className="icon-button" onClick={props.onClick}>
       <i className={props.icon}></i>
     </button>
   );
