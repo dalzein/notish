@@ -2,22 +2,19 @@ header {
   background-color: var(--background);
   padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--accent-1);
-}
-
-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.nav-left img {
+.header-left img {
   height: 2.125rem;
   width: 2.125rem;
   opacity: 0.3;
   vertical-align: top;
 }
 
-.nav-right {
+.header-right {
   display: flex;
   align-items: center;
 }

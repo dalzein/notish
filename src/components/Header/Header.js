@@ -23,64 +23,62 @@ function Header(props) {
 
   return (
     <header>
-      <nav>
-        <div className="nav-left">
-          <img src="/icon.svg" alt="icon" draggable="false" />
-        </div>
-        <div className="nav-right">
-          {props.userId && (
-            <div className="auth-info">
-              <span className="fa-stack syncing">
-                <i className="fa-solid fa-cloud fa-stack-1x fa-xl"></i>
-                {props.isSyncing ? (
-                  <i className="fa-solid fa-rotate fa-spin fa-stack-1x fa-sm"></i>
-                ) : (
-                  <i className="fa-solid fa-check fa-stack-1x fa-sm"></i>
-                )}
-              </span>
-              <span className="greeting">
-                {auth.currentUser.displayName.split(" ")[0]}
-              </span>
-              <button
-                type="button"
-                className="header-button sign-out"
-                onClick={signOutUser}
-              >
-                Sign out
-              </button>
-            </div>
-          )}
-          {!props.userId && !props.awaitingAuthRedirectResult && (
+      <div className="header-left">
+        <img src="/icon.svg" alt="icon" draggable="false" />
+      </div>
+      <div className="header-right">
+        {props.userId && (
+          <div className="auth-info">
+            <span className="fa-stack syncing">
+              <i className="fa-solid fa-cloud fa-stack-1x fa-xl"></i>
+              {props.isSyncing ? (
+                <i className="fa-solid fa-rotate fa-spin fa-stack-1x fa-sm"></i>
+              ) : (
+                <i className="fa-solid fa-check fa-stack-1x fa-sm"></i>
+              )}
+            </span>
+            <span className="greeting">
+              {auth.currentUser.displayName.split(" ")[0]}
+            </span>
             <button
               type="button"
-              className="header-button sign-in"
-              onClick={() => setShowSignInModal(true)}
+              className="header-button sign-out"
+              onClick={signOutUser}
             >
-              Sign in
+              Sign out
             </button>
-          )}
-          {props.awaitingAuthRedirectResult && (
-            <div className="auth-redirect-spinner">
-              <i className="fa-solid fa-rotate fa-spin fa-xl"></i>
-            </div>
-          )}
-          {!props.userId && (
-            <Modal
-              show={showSignInModal}
-              onClose={() => setShowSignInModal(false)}
-            >
-              <SignIn />
-            </Modal>
-          )}
-          <Modal
-            show={showGuideModal}
-            onClose={handleGuideDismiss}
-            maxWidth="30rem"
+          </div>
+        )}
+        {!props.userId && !props.awaitingAuthRedirectResult && (
+          <button
+            type="button"
+            className="header-button sign-in"
+            onClick={() => setShowSignInModal(true)}
           >
-            <Guide />
+            Sign in
+          </button>
+        )}
+        {props.awaitingAuthRedirectResult && (
+          <div className="auth-redirect-spinner">
+            <i className="fa-solid fa-rotate fa-spin fa-xl"></i>
+          </div>
+        )}
+        {!props.userId && (
+          <Modal
+            show={showSignInModal}
+            onClose={() => setShowSignInModal(false)}
+          >
+            <SignIn />
           </Modal>
-        </div>
-      </nav>
+        )}
+        <Modal
+          show={showGuideModal}
+          onClose={handleGuideDismiss}
+          maxWidth="30rem"
+        >
+          <Guide />
+        </Modal>
+      </div>
     </header>
   );
 }
