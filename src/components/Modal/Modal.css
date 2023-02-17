@@ -9,7 +9,7 @@
   visibility: hidden;
   opacity: 0;
   transition: all 0.2s linear;
-  padding: 10vh 0.5rem 0 0;
+  padding: 10vh 0.5rem 0;
 }
 
 .modal {
