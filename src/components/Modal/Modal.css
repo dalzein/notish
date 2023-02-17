@@ -19,7 +19,6 @@
   border: 1px solid var(--accent-2);
   margin: auto;
   min-width: 20rem;
-  box-shadow: var(--shadow);
   max-height: 80vh;
   display: flex;
   flex-direction: column;

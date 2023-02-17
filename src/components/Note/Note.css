@@ -1,10 +1,9 @@
 .note {
   position: absolute;
-  background-color: var(--accent-1);
+  background-color: #222b;
   border-radius: 0.375rem;
   width: 15rem;
   transition: all 0.2s linear;
-  box-shadow: var(--shadow);
 }
 
 .edit-note {

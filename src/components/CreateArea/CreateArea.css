@@ -1,5 +1,4 @@
 .create-area {
-  margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 0 0.5rem;
 }
@@ -10,7 +9,6 @@
   margin: auto;
   border: none;
   border-radius: 0.5rem;
-  box-shadow: var(--shadow);
 }
 
 .utility-wrapper {
@@ -32,4 +30,10 @@
 
 .note-limit i {
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .create-area {
+    margin-bottom: 0.5rem;
+  }
 }
