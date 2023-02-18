@@ -1,19 +1,28 @@
+.note-board-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
 .note-board {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 0 1.5rem;
   max-width: 80rem;
-}
-
-.note-container {
-  position: relative;
+  width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
+  .note-board-wrapper {
+    margin: 1.5rem 0;
+  }
+
   .note-board {
-    margin: 1.5rem 0.5rem 1.5rem 0.5rem;
+    margin: 0 1rem;
   }
 }
 

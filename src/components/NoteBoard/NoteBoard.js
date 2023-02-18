@@ -187,46 +187,48 @@ function NoteBoard(props) {
   }
 
   return (
-    <div className="note-board">
-      {!props.notes.length && (
-        <div className="no-notes">
-          <i className="fa-solid fa-arrow-up-long fa-2x"></i>
-          <h2>Create a note!</h2>
-          <p>
-            You'll be able to edit the text, colour and tags of your notes. You
-            can also re-order them by clicking and dragging!
-          </p>
+    <div className="note-board-wrapper">
+      <div className="note-board">
+        {!props.notes.length && (
+          <div className="no-notes">
+            <i className="fa-solid fa-arrow-up-long fa-2x"></i>
+            <h2>Create a note!</h2>
+            <p>
+              You'll be able to edit the text, colour and tags of your notes.
+              You can also re-order them by clicking and dragging!
+            </p>
+          </div>
+        )}
+        <div
+          className="note-masonry-wrapper"
+          style={{
+            width: `${columnCount * (columnWidth + gutter) - gutter}px`,
+            height: `${displayHeight}px`,
+          }}
+          ref={wrapperRef}
+        >
+          {props.notes.map((note) => {
+            return (
+              <Note
+                key={note.clientId}
+                note={note}
+                onEdit={props.onEdit}
+                onDelete={props.onDelete}
+                startSyncing={props.startSyncing}
+                syncNoteWithFirestore={props.syncNoteWithFirestore}
+                tags={[
+                  ...new Set(
+                    props.notes
+                      .map((note) => note.tag)
+                      .filter((tag) => tag !== "")
+                  ),
+                ]}
+                arrangeNotes={arrangeNotes}
+                onNoteDrag={handleNoteDrag}
+              />
+            );
+          })}
         </div>
-      )}
-      <div
-        className="note-masonry-wrapper"
-        style={{
-          width: `${columnCount * (columnWidth + gutter) - gutter}px`,
-          height: `${displayHeight}px`,
-        }}
-        ref={wrapperRef}
-      >
-        {props.notes.map((note) => {
-          return (
-            <Note
-              key={note.clientId}
-              note={note}
-              onEdit={props.onEdit}
-              onDelete={props.onDelete}
-              startSyncing={props.startSyncing}
-              syncNoteWithFirestore={props.syncNoteWithFirestore}
-              tags={[
-                ...new Set(
-                  props.notes
-                    .map((note) => note.tag)
-                    .filter((tag) => tag !== "")
-                ),
-              ]}
-              arrangeNotes={arrangeNotes}
-              onNoteDrag={handleNoteDrag}
-            />
-          );
-        })}
       </div>
     </div>
   );
