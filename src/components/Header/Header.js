@@ -24,7 +24,7 @@ function Header(props) {
   return (
     <header>
       <div className="header-left">
-        <img src="/icon.svg" alt="icon" draggable="false" />
+        <img src="/android-chrome-192x192.png" alt="logo" draggable="false" />
       </div>
       <div className="header-right">
         {props.userId && (
