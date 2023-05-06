@@ -2,8 +2,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.25rem;
+  gap: 1rem;
+  padding: 0.5rem;
   float: right;
   opacity: 0;
   transition: all 0.2s linear;

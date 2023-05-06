@@ -212,12 +212,8 @@ function SignUpForm() {
       />
       <ErrorLabel error={errors.confirmPassword} />
 
-      <button type="submit">
-        {pendingSignUp ? (
-          <i className="fa-solid fa-rotate fa-spin"></i>
-        ) : (
-          "Sign up"
-        )}
+      <button type="submit" disabled={pendingSignUp}>
+        Sign up
       </button>
       <ErrorLabel error={errors.other} />
     </form>

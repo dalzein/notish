@@ -2,6 +2,8 @@
   color: var(--foreground-secondary);
   max-width: 30rem;
   margin: 0 auto 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .note-filter ul {
@@ -21,7 +23,10 @@
   color: var(--foreground-secondary);
   height: 2rem;
   padding: 0 0.75rem;
-  border-radius: 1rem;
+  border-radius: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .note-filter button.active,
@@ -30,8 +35,7 @@
   background-color: var(--accent-2);
 }
 
-.note-filter .fa-tags,
-.note-filter .fa-tag {
-  font-size: 0.8rem;
-  margin-right: 0.25rem;
+.note-filter svg {
+  width: 1rem;
+  height: 1rem;
 }

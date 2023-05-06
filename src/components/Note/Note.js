@@ -256,7 +256,7 @@ function Note(props) {
       >
         <UtilityDropdown
           name="tag"
-          icon="fa-solid fa-tag"
+          icon="tag"
           setDropdownMenuStatus={setDropdownMenuStatus}
         >
           <TagSelector
@@ -268,14 +268,14 @@ function Note(props) {
         </UtilityDropdown>
         <UtilityDropdown
           name="colour"
-          icon="fa-solid fa-palette"
+          icon="colour"
           setDropdownMenuStatus={setDropdownMenuStatus}
         >
           <ColourSelector handleSelectColour={handleSelectColour} />
         </UtilityDropdown>
         <UtilityDropdown
           name="delete"
-          icon="fas fa-trash"
+          icon="trash"
           setDropdownMenuStatus={setDropdownMenuStatus}
         >
           <button

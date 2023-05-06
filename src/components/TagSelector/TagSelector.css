@@ -18,11 +18,19 @@
 .add-tag-button {
   height: 1.75rem;
   width: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background-color: var(--accent-2);
   color: var(--foreground);
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   border-bottom-left-radius: 0;
+}
+
+.add-tag-button > svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .add-tag-button:hover {
@@ -62,6 +70,9 @@
 }
 
 .clear-tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 0.25rem;
   color: var(--red);
   transition: all 0.2s linear;
@@ -69,4 +80,9 @@
 
 .clear-tag:hover {
   color: var(--foreground);
+}
+
+.clear-tag > svg {
+  width: 1rem;
+  height: 1rem;
 }

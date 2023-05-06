@@ -83,13 +83,8 @@ function ResetPassword() {
             className="reset-password-button"
             disabled={passwordResetEmailSent || pendingPasswordReset}
           >
-            {pendingPasswordReset && (
-              <i className="fa-solid fa-rotate fa-spin"></i>
-            )}
-            {passwordResetEmailSent && !pendingPasswordReset && "Sent!"}
-            {!pendingPasswordReset &&
-              !passwordResetEmailSent &&
-              "Send password reset email"}
+            {passwordResetEmailSent && "Sent!"}
+            {!passwordResetEmailSent && "Send password reset email"}
           </button>
         </form>
       )}

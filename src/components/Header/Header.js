@@ -29,14 +29,41 @@ function Header(props) {
       <div className="header-right">
         {props.userId && (
           <div className="auth-info">
-            <span className="fa-stack syncing">
-              <i className="fa-solid fa-cloud fa-stack-1x fa-xl"></i>
-              {props.isSyncing ? (
-                <i className="fa-solid fa-rotate fa-spin fa-stack-1x fa-sm"></i>
-              ) : (
-                <i className="fa-solid fa-check fa-stack-1x fa-sm"></i>
-              )}
-            </span>
+            {props.isSyncing ? (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="spinner"
+              >
+                <path
+                  opacity="0.2"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z"
+                  fill="currentColor"
+                />
+              </svg>
+            ) : (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2427L17.6568 9.1716L16.2426 7.75739L10.5858 13.4142Z"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
             <span className="greeting">
               {auth.currentUser.displayName.split(" ")[0]}
             </span>
@@ -59,26 +86,40 @@ function Header(props) {
           </button>
         )}
         {props.awaitingAuthRedirectResult && (
-          <div className="auth-redirect-spinner">
-            <i className="fa-solid fa-rotate fa-spin fa-xl"></i>
-          </div>
-        )}
-        {!props.userId && (
-          <Modal
-            show={showSignInModal}
-            onClose={() => setShowSignInModal(false)}
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="spinner"
           >
-            <SignIn />
-          </Modal>
+            <path
+              opacity="0.2"
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+              fill="currentColor"
+            />
+            <path
+              d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z"
+              fill="currentColor"
+            />
+          </svg>
         )}
-        <Modal
-          show={showGuideModal}
-          onClose={handleGuideDismiss}
-          maxWidth="30rem"
-        >
-          <Guide />
-        </Modal>
       </div>
+      {!props.userId && (
+        <Modal show={showSignInModal} onClose={() => setShowSignInModal(false)}>
+          <SignIn />
+        </Modal>
+      )}
+      <Modal
+        show={showGuideModal}
+        onClose={handleGuideDismiss}
+        maxWidth="30rem"
+      >
+        <Guide />
+      </Modal>
     </header>
   );
 }

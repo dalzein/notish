@@ -15,7 +15,7 @@
 .modal {
   background-color: var(--accent-1);
   position: relative;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   border: 1px solid var(--accent-2);
   margin: auto;
   min-width: 20rem;
@@ -51,11 +51,19 @@
   font-size: 1rem;
   color: var(--foreground-secondary);
   background-color: var(--accent-2);
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
   width: 1.75rem;
   height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-close:hover {
   color: var(--foreground);
+}
+
+.modal-close > svg {
+  width: 1rem;
+  height: 1rem;
 }

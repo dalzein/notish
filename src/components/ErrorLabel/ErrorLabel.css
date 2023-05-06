@@ -1,10 +1,15 @@
 .error-label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
   font-size: 0.75rem;
   transition: all 0.2s linear;
+  margin-top: 0.25rem;
 }
 
-.error-icon {
-  padding-right: 0.25rem;
+.error-label > svg {
+  width: 1rem;
+  height: 1rem;
   color: var(--red);
 }
 

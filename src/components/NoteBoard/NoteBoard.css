@@ -32,8 +32,10 @@
   max-width: 400px;
 }
 
-.no-notes .fa-solid {
-  margin-bottom: 0.5rem;
+.no-notes svg {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .no-notes h2 {
