@@ -1,3 +1,7 @@
+.tag-selector {
+  width: 15rem;
+}
+
 .tag-input {
   font-size: 0.85rem;
   outline: none;
@@ -6,6 +10,7 @@
   border: none;
   border-bottom: 1px solid var(--accent-2);
   padding-right: 0.25rem;
+  width: 100%;
 }
 
 .add-new-tag {
