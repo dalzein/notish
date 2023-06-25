@@ -23,7 +23,7 @@
   color: var(--foreground-secondary);
   height: 2rem;
   padding: 0 0.75rem;
-  border-radius: 2rem;
+  border-radius: 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;

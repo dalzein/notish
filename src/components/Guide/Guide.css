@@ -2,11 +2,12 @@
   margin: 0.5rem;
 }
 
-h2,
-.guide p:not(:last-of-type) {
-  margin-bottom: 0.5rem;
+h2 {
+  text-align: center;
+  padding-bottom: 0.5rem;
 }
 
 .guide p {
-  color: #888;
+  margin-top: 1rem;
+  line-height: 1.4;
 }

@@ -41,3 +41,7 @@
 .no-notes h2 {
   margin-bottom: 0.5rem;
 }
+
+.no-notes > p {
+  line-height: 1.4;
+}

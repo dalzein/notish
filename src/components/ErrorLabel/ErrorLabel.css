@@ -11,6 +11,7 @@
   width: 1rem;
   height: 1rem;
   color: var(--red);
+  flex-shrink: 0;
 }
 
 .error-label.hidden {

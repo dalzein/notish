@@ -8,7 +8,7 @@
   max-width: 25rem;
   margin: auto;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
 }
 
 .utility-wrapper {
@@ -33,6 +33,7 @@
 
 .note-limit p {
   text-align: center;
+  line-height: 1.4;
 }
 
 .note-limit i {

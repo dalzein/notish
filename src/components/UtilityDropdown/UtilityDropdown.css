@@ -1,7 +1,7 @@
 .dropdown-menu {
   max-width: 15rem;
   position: absolute;
-  top: 2.75rem;
+  top: 2.5rem;
   right: -1px;
   border: 1px solid var(--accent-2);
   border-radius: 0.5rem;

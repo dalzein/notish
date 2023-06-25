@@ -29,7 +29,7 @@
   border: none;
   background-color: var(--accent-2);
   color: var(--foreground);
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
   border-bottom-left-radius: 0;
   flex-shrink: 0;
 }

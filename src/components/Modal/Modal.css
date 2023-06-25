@@ -5,40 +5,32 @@
   right: 0;
   bottom: 0;
   left: 0;
-  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.3);
   visibility: hidden;
   opacity: 0;
   transition: all 0.2s linear;
   padding: 10vh 0.5rem 0;
+  overflow: auto;
 }
 
 .modal {
-  background-color: var(--accent-1);
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
   position: relative;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   border: 1px solid var(--accent-2);
   margin: auto;
   min-width: 20rem;
-  max-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
   width: 100%;
-}
-
-.modal-header {
-  padding: 0.5rem;
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  background-color: var(--accent-2);
+  padding: 3rem 2rem 2rem;
 }
 
 .modal-body {
   width: 100%;
   padding: 0.5rem;
-  overflow: auto;
 }
 
 .modal-wrapper.show {
@@ -47,23 +39,27 @@
 }
 
 .modal-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
   border: none;
   font-size: 1rem;
-  color: var(--foreground-secondary);
-  background-color: var(--accent-2);
-  border-radius: 0.5rem;
-  width: 1.75rem;
-  height: 1.75rem;
+  color: var(--foreground);
+  background-color: transparent;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.modal-close:hover {
-  color: var(--foreground);
+.modal-close > svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-.modal-close > svg {
-  width: 1rem;
-  height: 1rem;
+@media (max-width: 768px) {
+  .modal {
+    padding: 3rem 1rem 1rem;
+  }
 }
