@@ -14,7 +14,7 @@
   margin: 0.25rem;
   width: 50%;
   height: 2.25rem;
-  transition: all 0.2s linear;
+  transition: all 150ms linear;
 }
 
 .modal-tabs button.active {

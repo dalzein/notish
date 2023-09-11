@@ -215,7 +215,7 @@ function Note(props) {
       style={{
         border: `1px solid var(--${props.note.colour})`,
         zIndex: zIndex,
-        transition: mouseDragData.down ? "none" : "all 0.2s linear",
+        transition: mouseDragData.down ? "none" : "all 150ms linear",
       }}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}

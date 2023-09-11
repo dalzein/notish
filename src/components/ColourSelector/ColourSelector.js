@@ -5,7 +5,7 @@ function ColourSelector(props) {
   return (
     <div className="colour-selector">
       {[
-        "accent-2",
+        "accent-3",
         "cyan",
         "green",
         "orange",

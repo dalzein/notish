@@ -26,7 +26,7 @@
   border: none;
   font-size: 1rem;
   border-radius: 2.25rem;
-  transition: all 0.2s linear;
+  transition: all 150ms linear;
 }
 
 .sign-in-form-button:hover {

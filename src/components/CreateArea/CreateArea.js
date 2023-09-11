@@ -16,7 +16,7 @@ function CreateArea(props) {
     title: "",
     content: "",
     tag: "",
-    colour: "accent-2",
+    colour: "accent-3",
   });
   const [showNoteLimitModal, setShowNoteLimitModal] = useState(false);
 
@@ -47,7 +47,7 @@ function CreateArea(props) {
       title: "",
       content: "",
       tag: "",
-      colour: "accent-2",
+      colour: "accent-3",
     });
 
     setIsActive(false);
@@ -62,7 +62,7 @@ function CreateArea(props) {
         title: "",
         content: "",
         tag: "",
-        colour: "accent-2",
+        colour: "accent-3",
       });
     }
   }
@@ -100,7 +100,7 @@ function CreateArea(props) {
         onBlur={handleBlur}
         onFocus={handleFocus}
         style={{
-          border: `1px solid var(--${isActive ? note.colour : "accent-2"})`,
+          border: `1px solid var(--${isActive ? note.colour : "accent-3"})`,
         }}
       >
         <NoteText

@@ -9,10 +9,10 @@
   border: none;
   display: inline-block;
   border-radius: 0.375rem;
-  margin: 0.12rem;
+  margin: 2px;
   height: 2.25rem;
   width: 2.25rem;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 150ms ease-in-out;
 }
 
 .colour:hover {

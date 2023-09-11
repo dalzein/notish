@@ -1,7 +1,8 @@
 .note-text {
   display: flex;
   flex-direction: column;
-  padding: 0.5rem;
+  gap: 0.25rem;
+  padding: 1rem;
 }
 
 .title,
@@ -19,7 +20,7 @@
 
 .title {
   height: calc(37rem / 16);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1.25rem;
   background-color: var(--transparent);
 }

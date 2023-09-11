@@ -1,7 +1,7 @@
 .note-filter {
   color: var(--foreground-secondary);
   max-width: 30rem;
-  margin: 0 auto 1rem;
+  margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
 }
@@ -32,7 +32,7 @@
 .note-filter button.active,
 .note-filter button:hover {
   color: var(--foreground);
-  background-color: var(--accent-2);
+  background-color: var(--accent-3);
 }
 
 .note-filter svg {

@@ -11,9 +11,13 @@
   --foreground: #fff;
   --foreground-secondary: #888;
   --accent-1: #222;
-  --accent-2: #444;
-  --accent-3: #555;
-  --accent-4: #666;
+  --accent-2: #333;
+  --accent-3: #444;
+  --accent-4: #555;
+  --accent-5: #666;
+  --accent-white-alpha-1: rgba(255, 255, 255, 0.05);
+  --accent-white-alpha-2: rgba(255, 255, 255, 0.1);
+  --accent-white-alpha-3: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -39,7 +43,7 @@ input {
 button {
   cursor: pointer;
   font-family: inherit;
-  transition: all 0.2s linear;
+  transition: all 150ms linear;
 }
 
 ::placeholder {

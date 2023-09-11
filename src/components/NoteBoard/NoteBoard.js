@@ -4,7 +4,7 @@ import "./NoteBoard.css";
 
 function NoteBoard(props) {
   const wrapperRef = useRef(null);
-  const columnWidth = 240;
+  const columnWidth = 320;
   const gutter = 20;
   const [columnCount, setColumnCount] = useState(1);
   const [displayHeight, setDisplayHeight] = useState(0);

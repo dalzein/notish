@@ -3,7 +3,7 @@
   align-items: center;
   gap: 0.25rem;
   font-size: 0.75rem;
-  transition: all 0.2s linear;
+  transition: all 150ms linear;
   margin-top: 0.25rem;
 }
 

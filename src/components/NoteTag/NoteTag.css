@@ -1,6 +1,6 @@
 .note-tag {
   font-size: 0.85rem;
   width: 100%;
-  padding-left: 0.75rem;
-  color: var(--foreground-secondary);
+  padding-left: 1.25rem;
+  color: var(--accent-5);
 }
