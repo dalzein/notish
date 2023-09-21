@@ -26,7 +26,7 @@ function TagSelector(props) {
   }
 
   return (
-    <div className="tag-selector">
+    <div>
       {(props.tags.length > 0 || props.activeTag) && (
         <div className="existing-tags">
           {props.tags.length > 0 &&

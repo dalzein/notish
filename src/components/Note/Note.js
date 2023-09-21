@@ -258,6 +258,7 @@ function Note(props) {
           name="tag"
           icon="tag"
           setDropdownMenuStatus={setDropdownMenuStatus}
+          width="100%"
         >
           <TagSelector
             tags={props.tags}
