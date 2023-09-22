@@ -116,7 +116,7 @@ function CreateArea(props) {
         {isActive && (
           <div className="utility-wrapper">
             <UtilityContainer show="true">
-              <UtilityDropdown name="tag" icon="tag">
+              <UtilityDropdown name="tag" icon="tag" width="100%">
                 <TagSelector
                   tags={props.tags}
                   activeTag={note.tag}
