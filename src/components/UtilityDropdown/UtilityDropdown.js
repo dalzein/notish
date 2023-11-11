@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import IconButton from "../IconButton/IconButton";
-import "./UtilityDropdown.css";
+import styles from "./UtilityDropdown.module.css";
 
 function UtilityDropdown(props) {
   const [showDropdownMenu, setShowDropdownMenu] = useState(false);
@@ -24,7 +24,9 @@ function UtilityDropdown(props) {
     <div onBlur={handleBlur} tabIndex="-1">
       <IconButton icon={props.icon} onClick={handleClick} />
       <div
-        className={`dropdown-menu ${showDropdownMenu ? "show" : ""}`}
+        className={`${styles.dropdownMenu} ${
+          showDropdownMenu ? styles.show : ""
+        }`}
         style={{ width: props.width || "inherit" }}
       >
         {props.children}

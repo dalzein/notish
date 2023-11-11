@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
-import "./NoteText.css";
+import styles from "./NoteText.module.css";
 
 function NoteText(props) {
   const titleRef = useRef(null);
@@ -44,10 +44,10 @@ function NoteText(props) {
   }
 
   return (
-    <div className="note-text">
+    <div className={styles.noteText}>
       {props.showTitle && (
         <textarea
-          className="title"
+          className={styles.title}
           name="title"
           onChange={handleChange}
           value={props.title}
@@ -59,8 +59,8 @@ function NoteText(props) {
       )}
       {props.showContent && (
         <textarea
-          className={`content ${
-            props.extendContentArea ? "active" : "inactive"
+          className={`${styles.content} ${
+            props.extendContentArea ? styles.active : styles.inactive
           }`}
           name="content"
           onChange={handleChange}

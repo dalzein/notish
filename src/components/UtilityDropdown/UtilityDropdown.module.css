@@ -1,0 +1,20 @@
+.dropdownMenu {
+  max-width: 20rem;
+  position: absolute;
+  top: 2.75rem;
+  right: -1px;
+  border-radius: 1.25rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity, width, height, 250ms ease;
+  z-index: 1000;
+  background: var(--accent-1);
+  transform: scale(0.8);
+}
+
+.dropdownMenu.show {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: top;
+}

@@ -1,4 +1,4 @@
-.note-filter {
+.noteFilter {
   color: var(--foreground-secondary);
   max-width: 30rem;
   margin: 1rem auto;
@@ -6,36 +6,40 @@
   flex-wrap: wrap;
 }
 
-.note-filter ul {
+.noteFilter ul {
   justify-content: center;
 }
 
-.note-filter li {
+.noteFilter li {
   margin: 0.75rem;
 }
 
-.note-filter button {
+.noteFilter button {
   margin: 0.5rem;
   font-size: 0.875rem;
   text-decoration: none;
   border: none;
-  background-color: var(--accent-1);
+  background: var(--accent-1);
   color: var(--foreground-secondary);
-  height: 2rem;
-  padding: 0 0.75rem;
-  border-radius: 0.5rem;
+  height: 2.25rem;
+  padding: 0 1rem;
+  border-radius: 2rem;
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
 }
 
-.note-filter button.active,
-.note-filter button:hover {
+.noteFilter button.active,
+.noteFilter button:hover {
   color: var(--foreground);
-  background-color: var(--accent-3);
+  background: var(--accent-3);
 }
 
-.note-filter svg {
+.noteFilter svg {
   width: 1rem;
   height: 1rem;
+}
+
+.tagText {
+  line-height: 1;
 }

@@ -5,7 +5,7 @@ import NoteText from "../NoteText/NoteText";
 import TagSelector from "../TagSelector/TagSelector";
 import UtilityContainer from "../UtilityContainer/UtilityContainer";
 import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
-import "./Note.css";
+import styles from "./Note.module.css";
 
 function Note(props) {
   const noteRef = useRef(null);
@@ -213,9 +213,10 @@ function Note(props) {
     <div
       className={`note ${mouseDragData.down ? "dragging" : ""}`}
       style={{
-        border: `1px solid var(--${props.note.colour})`,
+        background: `rgba(var(--${props.note.colour}), 0.1)`,
+        border: `1px solid rgba(var(--${props.note.colour}), 0.5)`,
         zIndex: zIndex,
-        transition: mouseDragData.down ? "none" : "all 150ms linear",
+        transition: mouseDragData.down ? "none" : "all 250ms ease",
       }}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
@@ -223,13 +224,13 @@ function Note(props) {
       ref={noteRef}
     >
       <div
-        className={`note-screen ${isActive ? "hidden" : ""} ${
-          isTouchScreen ? "overlay" : ""
+        className={`${styles.noteScreen} ${isActive ? styles.hidden : ""} ${
+          isTouchScreen ? styles.overlay : ""
         }`}
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       ></div>
-      <div tabIndex="-1" className="edit-note">
+      <div tabIndex="-1" className={styles.editNote}>
         <NoteText
           title={props.note.title}
           content={props.note.content}
@@ -280,7 +281,7 @@ function Note(props) {
           setDropdownMenuStatus={setDropdownMenuStatus}
         >
           <button
-            className="delete-button"
+            className={styles.deleteButton}
             onClick={() =>
               props.onDelete(props.note.clientId, props.note.documentId)
             }

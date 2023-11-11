@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./TagSelector.css";
+import styles from "./TagSelector.module.css";
 
 function TagSelector(props) {
   const [tag, setTag] = useState("");
@@ -27,23 +27,23 @@ function TagSelector(props) {
 
   return (
     <div>
-      {(props.tags.length > 0 || props.activeTag) && (
-        <div className="existing-tags">
+      {props.tags.length > 0 || props.activeTag ? (
+        <div className={styles.existingTags}>
           {props.tags.length > 0 &&
             props.tags.map((tag, index) => (
               <div
                 name={tag}
                 key={index}
-                className={`existing-tag ${
-                  tag === props.activeTag ? "active" : ""
+                className={`${styles.existingTag} ${
+                  tag === props.activeTag ? styles.active : ""
                 }`}
                 onClick={handleSelectTag}
               >
-                <div className="tag-name" style={{ overflow: "hidden" }}>
+                <div className={styles.tagName} style={{ overflow: "hidden" }}>
                   <span>{tag}</span>
                 </div>
                 {tag === props.activeTag && (
-                  <div className="clear-tag" onClick={props.onClearTag}>
+                  <div className={styles.clearTag} onClick={props.onClearTag}>
                     <svg
                       width="24"
                       height="24"
@@ -69,11 +69,11 @@ function TagSelector(props) {
           {props.activeTag && !props.tags.includes(props.activeTag) && (
             <span
               name={props.activeTag}
-              className="existing-tag active"
+              className={`${styles.existingTag} ${styles.active}`}
               onClick={handleSelectTag}
             >
               {props.activeTag}
-              <div className="clear-tag" onClick={props.onClearTag}>
+              <div className={styles.clearTag} onClick={props.onClearTag}>
                 <svg
                   width="24"
                   height="24"
@@ -96,10 +96,14 @@ function TagSelector(props) {
             </span>
           )}
         </div>
+      ) : (
+        <div className={styles.existingTags}>
+          <span className={styles.noTagsText}>No available tags...</span>
+        </div>
       )}
-      <div className="add-new-tag">
+      <div className={styles.addNewTag}>
         <input
-          className="tag-input"
+          className={styles.tagInput}
           maxLength="16"
           type="text"
           value={tag}
@@ -108,7 +112,7 @@ function TagSelector(props) {
           onChange={(e) => setTag(e.target.value)}
           spellCheck="false"
         />
-        <button className="add-tag-button" onClick={handleAddTag}>
+        <button className={styles.addTagButton} onClick={handleAddTag}>
           <svg
             width="24"
             height="24"

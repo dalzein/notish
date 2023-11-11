@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { auth } from "../../firebase/firebase";
-import { signOutUser } from "../../firebase/firebase-auth";
+import { signInWithGoogle, signOutUser } from "../../firebase/firebase-auth";
 import Guide from "../Guide/Guide";
 import Modal from "../Modal/Modal";
-import SignIn from "../SignIn/SignIn";
-import "./Header.css";
+import styles from "./Header.module.css";
 
 function Header(props) {
   const [showSignInModal, setShowSignInModal] = useState(false);
-  const [showGuideModal, setShowGuideModal] = useState(
-    window.localStorage.getItem("dismissGuide") ? false : true
+  const [guideModalIsOpen, setGuideModalIsOpen] = useState(
+    window.localStorage.getItem("guideDismissed") ? false : true
   );
 
   if (props.userId && showSignInModal) {
@@ -17,18 +16,18 @@ function Header(props) {
   }
 
   function handleGuideDismiss() {
-    setShowGuideModal(false);
-    window.localStorage.setItem("dismissGuide", true);
+    setGuideModalIsOpen(false);
+    window.localStorage.setItem("guideDismissed", true);
   }
 
   return (
     <header>
-      <div className="header-left">
+      <div className={styles.headerLeft}>
         <img src="/android-chrome-192x192.png" alt="logo" draggable="false" />
       </div>
-      <div className="header-right">
+      <div className={styles.headerRight}>
         {props.userId && (
-          <div className="auth-info">
+          <div className={styles.authInfo}>
             {props.isSyncing ? (
               <svg
                 width="24"
@@ -36,7 +35,7 @@ function Header(props) {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="spinner"
+                className={styles.spinner}
               >
                 <path
                   opacity="0.2"
@@ -57,6 +56,7 @@ function Header(props) {
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                className={styles.check}
               >
                 <path
                   d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2427L17.6568 9.1716L16.2426 7.75739L10.5858 13.4142Z"
@@ -64,12 +64,12 @@ function Header(props) {
                 />
               </svg>
             )}
-            <span className="greeting">
+            <span className={styles.greeting}>
               {auth.currentUser.displayName.split(" ")[0]}
             </span>
             <button
               type="button"
-              className="header-button sign-out"
+              className={styles.signOutButton}
               onClick={signOutUser}
             >
               Sign out
@@ -77,12 +77,21 @@ function Header(props) {
           </div>
         )}
         {!props.userId && !props.awaitingAuthRedirectResult && (
-          <button
-            type="button"
-            className="header-button sign-in"
-            onClick={() => setShowSignInModal(true)}
-          >
-            Sign in
+          <button className={styles.signInButton} onClick={signInWithGoogle}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.gIcon}
+            >
+              <path
+                d="M6 12C6 15.3137 8.68629 18 12 18C14.6124 18 16.8349 16.3304 17.6586 14H12V10H21.8047V14H21.8C20.8734 18.5645 16.8379 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.445 2 18.4831 3.742 20.2815 6.39318L17.0039 8.68815C15.9296 7.06812 14.0895 6 12 6C8.68629 6 6 8.68629 6 12Z"
+                fill="currentColor"
+              />
+            </svg>
+            <span>Sign in with Google</span>
           </button>
         )}
         {props.awaitingAuthRedirectResult && (
@@ -92,7 +101,7 @@ function Header(props) {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="spinner"
+            className={styles.spinner}
           >
             <path
               opacity="0.2"
@@ -108,16 +117,7 @@ function Header(props) {
           </svg>
         )}
       </div>
-      {!props.userId && (
-        <Modal show={showSignInModal} onClose={() => setShowSignInModal(false)}>
-          <SignIn />
-        </Modal>
-      )}
-      <Modal
-        show={showGuideModal}
-        onClose={handleGuideDismiss}
-        maxWidth="30rem"
-      >
+      <Modal isOpen={guideModalIsOpen} close={handleGuideDismiss}>
         <Guide />
       </Modal>
     </header>

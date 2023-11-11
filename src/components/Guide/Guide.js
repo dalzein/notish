@@ -1,8 +1,8 @@
-import "./Guide.css";
+import styles from "./Guide.module.css";
 
 function Guide() {
   return (
-    <div className="guide">
+    <div className={styles.guide}>
       <h2>Hello! Just a couple things...</h2>
       <p>
         Signing in isn't required to use this app. Your notes will be saved to

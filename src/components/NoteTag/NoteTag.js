@@ -1,10 +1,10 @@
 import React from "react";
-import "./NoteTag.css";
+import styles from "./NoteTag.module.css";
 
 function NoteTag(props) {
   return (
     props.tagName && (
-      <div className="note-tag">
+      <div className={styles.noteTag}>
         <span>{props.tagName}</span>
       </div>
     )

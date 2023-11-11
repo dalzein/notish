@@ -1,58 +1,52 @@
-.tag-input {
+.tagInput {
   font-size: 0.875rem;
   outline: none;
   color: var(--foreground);
-  background-color: transparent;
-  border: none;
+  background: var(--accent-1);
   border: 1px solid var(--accent-3);
-  border-right: none;
-  padding-right: 0.25rem;
   width: 100%;
-  padding-left: 0.5rem;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
+  padding: 0 1rem;
+  border-radius: 2.5rem;
+  height: 2.5rem;
 }
 
-.add-new-tag {
+.addNewTag {
   padding: 1rem;
-  position: relative;
   display: flex;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 
-.add-tag-button {
-  height: 2.25rem;
-  width: 2.25rem;
+.addTagButton {
+  height: 2.5rem;
+  width: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
-  background-color: var(--accent-3);
+  border: none;
+  background: var(--accent-3);
   color: var(--foreground);
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  border-radius: 2.5rem;
   flex-shrink: 0;
 }
 
-.add-tag-button > svg {
+.addTagButton > svg {
   width: 1rem;
   height: 1rem;
 }
 
-.add-tag-button:hover {
-  background-color: var(--accent-4);
-  border-color: var(--accent-5);
+.addTagButton:hover {
+  background: var(--accent-4);
 }
 
-.existing-tags {
-  border-bottom: 1px solid var(--accent-3);
+.existingTags {
+  border-bottom: 1px solid var(--background);
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.existing-tag {
+.existingTag {
   font-size: 0.875rem;
   text-overflow: ellipsis;
   cursor: pointer;
@@ -60,38 +54,43 @@
   align-items: center;
   flex-wrap: nowrap;
   color: var(--foreground-secondary);
-  transition: all 150ms linear;
+  transition: all 250ms ease;
 }
 
-.existing-tag:hover {
+.existingTag:hover {
   color: var(--foreground);
 }
 
-.existing-tag.active {
+.existingTag.active {
   color: var(--foreground);
 }
 
-.tag-name {
+.tagName {
   display: flex;
   align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.clear-tag {
+.clearTag {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 0.5rem;
-  color: var(--red);
-  transition: all 150ms linear;
+  color: rgb(var(--red));
+  transition: all 250ms ease;
 }
 
-.clear-tag:hover {
+.clearTag:hover {
   color: var(--foreground);
 }
 
-.clear-tag > svg {
+.clearTag > svg {
   width: 1rem;
   height: 1rem;
+}
+
+.noTagsText {
+  color: var(--foreground-secondary);
+  text-align: center;
 }

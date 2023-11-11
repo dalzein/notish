@@ -1,0 +1,22 @@
+.iconButton {
+  background: transparent;
+  color: var(--foreground-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 2.25rem;
+  border: none;
+}
+
+.iconButton:hover {
+  color: var(--foreground);
+  background: var(--accent-white-alpha-2);
+}
+
+.iconButton > svg {
+  height: 1.25rem;
+  width: 1.25rem;
+}

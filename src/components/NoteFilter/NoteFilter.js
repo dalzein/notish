@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./NoteFilter.css";
+import styles from "./NoteFilter.module.css";
 
 function NoteFilter(props) {
   useEffect(() => {
@@ -15,10 +15,10 @@ function NoteFilter(props) {
   return (
     props.hasNotes &&
     props.tags?.length > 0 && (
-      <div className="note-filter">
+      <div className={styles.noteFilter}>
         <button
           name="all"
-          className={`${props.currentTagFilter === "all" ? "active" : ""}`}
+          className={`${props.currentTagFilter === "all" ? styles.active : ""}`}
           type="button"
           onClick={handleClick}
         >
@@ -28,7 +28,7 @@ function NoteFilter(props) {
           <button
             key={index}
             name={tag}
-            className={`${props.currentTagFilter === tag ? "active" : ""}`}
+            className={`${props.currentTagFilter === tag ? styles.active : ""}`}
             type="button"
             onClick={handleClick}
           >
@@ -46,7 +46,7 @@ function NoteFilter(props) {
                 fill="currentColor"
               />
             </svg>
-            {tag}
+            <span className={styles.tagText}>{tag}</span>
           </button>
         ))}
       </div>

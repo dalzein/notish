@@ -1,11 +1,11 @@
 import React from "react";
-import "./ColourSelector.css";
+import styles from "./ColourSelector.module.css";
 
 function ColourSelector(props) {
   return (
-    <div className="colour-selector">
+    <div className={styles.colourSelector}>
       {[
-        "accent-3",
+        "grey",
         "cyan",
         "green",
         "orange",
@@ -16,9 +16,9 @@ function ColourSelector(props) {
       ].map((colourString, index) => (
         <button
           key={index}
-          className="colour"
+          className={styles.colour}
           name="colour"
-          style={{ backgroundColor: `var(--${colourString})` }}
+          style={{ background: `rgb(var(--${colourString}))` }}
           onClick={() => props.handleSelectColour(colourString)}
         ></button>
       ))}

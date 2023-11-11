@@ -1,4 +1,4 @@
-.note-text {
+.noteText {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -22,11 +22,11 @@
   height: calc(37rem / 16);
   font-weight: 400;
   font-size: 1.25rem;
-  background-color: var(--transparent);
+  background: var(--transparent);
 }
 
 .content {
   height: 1rem;
   font-size: 1rem;
-  background-color: var(--transparent);
+  background: var(--transparent);
 }

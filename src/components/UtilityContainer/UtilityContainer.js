@@ -1,9 +1,11 @@
 import React from "react";
-import "./UtilityContainer.css";
+import styles from "./UtilityContainer.module.css";
 
 function UtilityContainer(props) {
   return (
-    <div className={`utility-container ${props.show ? "show" : ""}`}>
+    <div
+      className={`${styles.utilityContainer} ${props.show ? styles.show : ""}`}
+    >
       {props.children}
     </div>
   );

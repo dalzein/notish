@@ -1,15 +1,16 @@
 :root {
-  --rose: #ff007f;
-  --cyan: #8be9fd;
-  --green: #50fa7b;
-  --orange: #ffb86c;
-  --pink: #ff79c6;
-  --purple: #bd93f9;
-  --red: #ff5555;
-  --yellow: #f1fa8c;
+  --rose: 255, 85, 85;
+  --cyan: 139, 233, 253;
+  --green: 80, 250, 123;
+  --orange: 255, 184, 108;
+  --pink: 255, 121, 198;
+  --purple: 189, 147, 249;
+  --red: 255, 85, 85;
+  --yellow: 241, 250, 140;
+  --grey: 68, 68, 68;
   --background: #111;
   --foreground: #fff;
-  --foreground-secondary: #888;
+  --foreground-secondary: #fff8;
   --accent-1: #222;
   --accent-2: #333;
   --accent-3: #444;
@@ -31,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
   user-select: none;
 }
@@ -43,7 +44,8 @@ input {
 button {
   cursor: pointer;
   font-family: inherit;
-  transition: all 150ms linear;
+  transition: all 250ms ease;
+  font-size: 1rem;
 }
 
 ::placeholder {

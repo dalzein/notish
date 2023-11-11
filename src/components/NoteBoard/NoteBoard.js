@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import Note from "../Note/Note";
-import "./NoteBoard.css";
+import styles from "./NoteBoard.module.css";
 
 function NoteBoard(props) {
   const wrapperRef = useRef(null);
@@ -187,10 +187,10 @@ function NoteBoard(props) {
   }
 
   return (
-    <div className="note-board-wrapper">
-      <div className="note-board">
+    <div className={styles.noteBoardWrapper}>
+      <div className={styles.noteBoard}>
         {!props.notes.length && (
-          <div className="no-notes">
+          <div className={styles.noNotes}>
             <svg
               width="24"
               height="24"

@@ -1,0 +1,46 @@
+.createArea {
+  padding: 0 0.5rem;
+}
+
+.createNote {
+  position: relative;
+  max-width: 25rem;
+  margin: auto;
+  border-radius: 1.25rem;
+}
+
+.utilityWrapper {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 5rem;
+}
+
+.modalContent svg {
+  width: 3rem;
+  height: 3rem;
+  color: rgb(var(--red));
+}
+
+.modalContent p {
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.modalContent i {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    margin: 3rem;
+  }
+}

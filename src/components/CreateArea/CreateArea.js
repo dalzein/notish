@@ -8,7 +8,7 @@ import NoteText from "../NoteText/NoteText";
 import TagSelector from "../TagSelector/TagSelector";
 import UtilityContainer from "../UtilityContainer/UtilityContainer";
 import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
-import "./CreateArea.css";
+import styles from "./CreateArea.module.css";
 
 function CreateArea(props) {
   const [isActive, setIsActive] = useState(false);
@@ -16,9 +16,9 @@ function CreateArea(props) {
     title: "",
     content: "",
     tag: "",
-    colour: "accent-3",
+    colour: "grey",
   });
-  const [showNoteLimitModal, setShowNoteLimitModal] = useState(false);
+  const [noteLimitModalIsOpen, setNoteLimitModalIsOpen] = useState(false);
 
   function onTextChange(name, value) {
     setNote((prevNote) => ({
@@ -34,7 +34,7 @@ function CreateArea(props) {
     if (!note.title && !note.content && !note.tag) return;
 
     if (props.noteLimitReached) {
-      setShowNoteLimitModal(true);
+      setNoteLimitModalIsOpen(true);
       return;
     }
 
@@ -47,7 +47,7 @@ function CreateArea(props) {
       title: "",
       content: "",
       tag: "",
-      colour: "accent-3",
+      colour: "grey",
     });
 
     setIsActive(false);
@@ -62,7 +62,7 @@ function CreateArea(props) {
         title: "",
         content: "",
         tag: "",
-        colour: "accent-3",
+        colour: "grey",
       });
     }
   }
@@ -94,13 +94,16 @@ function CreateArea(props) {
   }
 
   return (
-    <div className="create-area">
+    <div className={styles.createArea}>
       <div
-        className="create-note"
+        className={styles.createNote}
         onBlur={handleBlur}
         onFocus={handleFocus}
         style={{
-          border: `1px solid var(--${isActive ? note.colour : "accent-3"})`,
+          background: `rgba(var(--${isActive ? note.colour : "grey"}), 0.1)`,
+          border: `1px solid rgba(var(--${
+            isActive ? note.colour : "grey"
+          }), 0.5)`,
         }}
       >
         <NoteText
@@ -114,7 +117,7 @@ function CreateArea(props) {
         />
         <NoteTag tagName={note.tag} />
         {isActive && (
-          <div className="utility-wrapper">
+          <div className={styles.utilityWrapper}>
             <UtilityContainer show="true">
               <UtilityDropdown name="tag" icon="tag" width="100%">
                 <TagSelector
@@ -134,33 +137,21 @@ function CreateArea(props) {
       </div>
 
       <Modal
-        show={showNoteLimitModal}
-        onClose={() => setShowNoteLimitModal(false)}
+        isOpen={noteLimitModalIsOpen}
+        close={() => setNoteLimitModalIsOpen(false)}
       >
-        <div className="note-limit">
+        <div className={styles.modalContent}>
           <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
           >
-            <path
-              d="M12 6C12.5523 6 13 6.44772 13 7V13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13V7C11 6.44772 11.4477 6 12 6Z"
-              fill="currentColor"
-            />
-            <path
-              d="M12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z"
-              fill="currentColor"
-            />
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
-              fill="currentColor"
-            />
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
           </svg>
-          <p>You've reached the maximum number of notes we can hold!</p>
+          <p>You've reached the note limit!</p>
         </div>
       </Modal>
     </div>

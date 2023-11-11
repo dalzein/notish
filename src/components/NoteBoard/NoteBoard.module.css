@@ -1,11 +1,11 @@
-.note-board-wrapper {
+.noteBoardWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 2rem 0;
 }
 
-.note-board {
+.noteBoard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,27 +21,27 @@
     margin: 1.5rem 0;
   }
 
-  .note-board {
+  .noteBoard {
     margin: 0 1rem;
   }
 }
 
-.no-notes {
+.noNotes {
   text-align: center;
   color: var(--accent-3);
   max-width: 400px;
 }
 
-.no-notes svg {
+.noNotes svg {
   height: 2.5rem;
   width: 2.5rem;
   margin-bottom: 0.2rem;
 }
 
-.no-notes h2 {
+.noNotes h2 {
   margin-bottom: 0.5rem;
 }
 
-.no-notes > p {
+.noNotes > p {
   line-height: 1.4;
 }

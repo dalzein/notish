@@ -1,9 +1,9 @@
 import React from "react";
-import "./IconButton.css";
+import styles from "./IconButton.module.css";
 
 function IconButton(props) {
   return (
-    <button className="icon-button" onClick={props.onClick}>
+    <button className={styles.iconButton} onClick={props.onClick}>
       {props.icon === "tag" && (
         <svg
           width="24"
