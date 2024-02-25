@@ -8,8 +8,8 @@ header {
 }
 
 .headerLeft img {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.25rem;
+  width: 2.25rem;
   opacity: 0.5;
   vertical-align: top;
 }
@@ -32,8 +32,8 @@ header {
 .spinner,
 .check {
   color: var(--foreground-secondary);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .spinner {
@@ -52,8 +52,8 @@ header {
 
 .signOutButton {
   font-size: 1rem;
-  border-radius: 2.5rem;
-  height: 2.5rem;
+  border-radius: 2.25rem;
+  height: 2.25rem;
   padding: 0 1rem;
   color: var(--foreground);
   background: var(--accent-3);
@@ -71,8 +71,8 @@ header {
 }
 
 .signInButton {
-  height: 2.5rem;
-  border-radius: 2.5rem;
+  height: 2.25rem;
+  border-radius: 2.25rem;
   background: var(--accent-3);
   display: flex;
   align-items: center;

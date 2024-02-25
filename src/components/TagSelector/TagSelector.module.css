@@ -6,8 +6,8 @@
   border: 1px solid var(--accent-3);
   width: 100%;
   padding: 0 1rem;
-  border-radius: 2.5rem;
-  height: 2.5rem;
+  border-radius: 2.25rem;
+  height: 2.25rem;
 }
 
 .addNewTag {
@@ -17,15 +17,15 @@
 }
 
 .addTagButton {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.25rem;
+  width: 2.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background: var(--accent-3);
   color: var(--foreground);
-  border-radius: 2.5rem;
+  border-radius: 2.25rem;
   flex-shrink: 0;
 }
 

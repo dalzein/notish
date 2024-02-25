@@ -1,17 +1,17 @@
 .colourSelector {
   display: flex;
   flex-wrap: wrap;
-  width: 11rem;
+  width: 10rem;
   margin: 0.25rem;
 }
 
 .colour {
   border: none;
   display: inline-block;
-  border-radius: 2.5rem;
+  border-radius: 2.25rem;
   margin: 2px;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.25rem;
+  width: 2.25rem;
   transition: opacity 150ms ease-in-out;
 }
 
