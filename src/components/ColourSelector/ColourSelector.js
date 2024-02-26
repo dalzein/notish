@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ColourSelector.module.css";
 
-function ColourSelector(props) {
+export default function ColourSelector({ handleSelectColour }) {
   return (
     <div className={styles.colourSelector}>
       {[
@@ -19,11 +19,9 @@ function ColourSelector(props) {
           className={styles.colour}
           name="colour"
           style={{ background: `rgb(var(--${colourString}))` }}
-          onClick={() => props.handleSelectColour(colourString)}
+          onClick={() => handleSelectColour(colourString)}
         ></button>
       ))}
     </div>
   );
 }
-
-export default ColourSelector;

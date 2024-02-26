@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./IconButton.module.css";
 
-function IconButton(props) {
+export default function IconButton({ icon, onClick }) {
   return (
-    <button className={styles.iconButton} onClick={props.onClick}>
-      {props.icon === "tag" && (
+    <button className={styles.iconButton} onClick={onClick}>
+      {icon === "tag" && (
         <svg
           width="24"
           height="24"
@@ -20,7 +20,7 @@ function IconButton(props) {
           />
         </svg>
       )}
-      {props.icon === "colour" && (
+      {icon === "colour" && (
         <svg
           width="24"
           height="24"
@@ -40,7 +40,7 @@ function IconButton(props) {
           />
         </svg>
       )}
-      {props.icon === "add" && (
+      {icon === "add" && (
         <svg
           width="24"
           height="24"
@@ -54,7 +54,7 @@ function IconButton(props) {
           />
         </svg>
       )}
-      {props.icon === "trash" && (
+      {icon === "trash" && (
         <svg
           width="24"
           height="24"
@@ -75,5 +75,3 @@ function IconButton(props) {
     </button>
   );
 }
-
-export default IconButton;

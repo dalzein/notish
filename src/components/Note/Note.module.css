@@ -5,6 +5,8 @@
   border-radius: 1.25rem;
   width: 20rem;
   transition: all 250ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .editNote {

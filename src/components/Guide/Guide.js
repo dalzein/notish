@@ -1,6 +1,6 @@
 import styles from "./Guide.module.css";
 
-function Guide() {
+export default function Guide() {
   return (
     <div className={styles.guide}>
       <h2>Hello! Just a couple things...</h2>
@@ -15,5 +15,3 @@ function Guide() {
     </div>
   );
 }
-
-export default Guide;

@@ -1,14 +1,10 @@
 import React from "react";
 import styles from "./UtilityContainer.module.css";
 
-function UtilityContainer(props) {
+export default function UtilityContainer({ show, children }) {
   return (
-    <div
-      className={`${styles.utilityContainer} ${props.show ? styles.show : ""}`}
-    >
-      {props.children}
+    <div className={`${styles.utilityContainer} ${show ? styles.show : ""}`}>
+      {children}
     </div>
   );
 }
-
-export default UtilityContainer;

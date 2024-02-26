@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ColourSelector from "../ColourSelector/ColourSelector";
 import NoteTag from "../NoteTag/NoteTag";
 import NoteText from "../NoteText/NoteText";
@@ -7,7 +7,16 @@ import UtilityContainer from "../UtilityContainer/UtilityContainer";
 import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
 import styles from "./Note.module.css";
 
-function Note(props) {
+export default function Note({
+  note,
+  onEdit,
+  onDelete,
+  startSyncing,
+  syncNoteWithFirestore,
+  tags,
+  arrangeNotes,
+  onNoteDrag,
+}) {
   const noteRef = useRef(null);
   const isTouchScreen =
     "maxTouchPoints" in navigator && navigator.maxTouchPoints > 0;
@@ -30,10 +39,10 @@ function Note(props) {
     mouseDeltaThreshold: 6,
   });
   const [noteSnapshot, setNoteSnapshot] = useState({
-    title: props.note.title,
-    content: props.note.content,
-    colour: props.note.colour,
-    tag: props.note.tag,
+    title: note.title,
+    content: note.content,
+    colour: note.colour,
+    tag: note.tag,
   });
 
   // Bring note forward if it's in focus
@@ -47,39 +56,49 @@ function Note(props) {
       : 1;
 
   useEffect(() => {
-    props.arrangeNotes();
-  }, [isActive, props]);
+    const handleWindowClick = (e) => {
+      !noteRef.current?.contains(e.target) && setIsActive(false);
+    };
+
+    window.addEventListener("click", handleWindowClick);
+
+    return () => window.removeEventListener("click", handleWindowClick);
+  }, []);
+
+  useEffect(() => {
+    arrangeNotes();
+  }, [isActive, arrangeNotes, onNoteDrag]);
 
   useEffect(() => {
     let timeout;
     let shouldUpdate = false;
 
     Object.keys(noteSnapshot).forEach((key) => {
-      shouldUpdate = shouldUpdate || props.note[key] !== noteSnapshot[key];
+      shouldUpdate = shouldUpdate || note[key] !== noteSnapshot[key];
     });
 
     function syncNoteUpdates() {
       setNoteSnapshot((previousValue) => ({
         ...previousValue,
-        title: props.note.title,
-        content: props.note.content,
-        colour: props.note.colour,
-        tag: props.note.tag,
+        title: note.title,
+        content: note.content,
+        colour: note.colour,
+        tag: note.tag,
       }));
-      props.syncNoteWithFirestore(props.note);
+      syncNoteWithFirestore(note);
     }
 
     // Debounce update calls to Firestore database
     if (shouldUpdate) {
-      props.startSyncing();
+      startSyncing();
       timeout = setTimeout(syncNoteUpdates, 2000);
     }
 
     return () => clearTimeout(timeout);
-  }, [noteSnapshot, props]);
+  }, [noteSnapshot, note, syncNoteWithFirestore, startSyncing]);
 
   useEffect(() => {
-    function handleMouseMove(e) {
+    const handleMouseMove = (e) => {
       if (e.changedTouches && e.changedTouches.length) {
         e = e.changedTouches[0];
       }
@@ -98,15 +117,15 @@ function Note(props) {
         }px, ${
           e.pageY - mouseDragData.yOffset - mouseDragData.containerY - 1
         }px)`;
-        props.onNoteDrag(props.note.clientId, e.pageX, e.pageY);
+        onNoteDrag(note.clientId, e.pageX, e.pageY);
         setMouseDragData((previousValue) => ({
           ...previousValue,
           dragging: true,
         }));
       }
-    }
+    };
 
-    function handleMouseUp(e) {
+    const handleMouseUp = (e) => {
       e.preventDefault();
 
       if (e.changedTouches && e.changedTouches.length) {
@@ -117,7 +136,7 @@ function Note(props) {
       if (!mouseDragData.dragging) {
         setIsActive(true);
       } else {
-        props.onNoteDrag(props.note.clientId, e.pageX, e.pageY, true);
+        onNoteDrag(note.clientId, e.pageX, e.pageY, true);
       }
 
       setMouseDragData((previousValue) => ({
@@ -125,7 +144,7 @@ function Note(props) {
         down: false,
         dragging: false,
       }));
-    }
+    };
 
     // Attach mouse move and mouse up event listeners to the document if the mouse is down on a note
     if (mouseDragData.down) {
@@ -151,41 +170,39 @@ function Note(props) {
     mouseDragData.xStart,
     mouseDragData.yOffset,
     mouseDragData.yStart,
-    props,
+    note.clientId,
+    onNoteDrag,
   ]);
 
-  function handleNoteBlur(e) {
-    if (e.currentTarget.contains(e.relatedTarget)) return;
+  const handleTextChange = useCallback(
+    (name, value) => {
+      onEdit(note.clientId, { ...note, [name]: value });
+    },
+    [onEdit, note]
+  );
 
-    setIsActive(false);
-  }
-
-  function handleTextChange(name, value) {
-    props.onEdit(props.note.clientId, { ...props.note, [name]: value });
-  }
-
-  function setDropdownMenuStatus(name, isOpen) {
+  const setDropdownMenuStatus = useCallback((name, isOpen) => {
     setShowDropdown((previousValue) => ({
       ...previousValue,
       [name]: isOpen,
     }));
-  }
+  }, []);
 
-  function handleSelectTag(tag) {
-    props.onEdit(props.note.clientId, { ...props.note, tag });
-  }
+  const handleSelectTag = (tag) => {
+    onEdit(note.clientId, { ...note, tag });
+  };
 
-  function handleClearTag(e) {
+  const handleClearTag = (e) => {
     e.stopPropagation();
-    props.onEdit(props.note.clientId, { ...props.note, tag: "" });
-  }
+    onEdit(note.clientId, { ...note, tag: "" });
+  };
 
-  function handleSelectColour(colourString) {
-    props.onEdit(props.note.clientId, { ...props.note, colour: colourString });
-  }
+  const handleSelectColour = (colourString) => {
+    onEdit(note.clientId, { ...note, colour: colourString });
+  };
 
   // On mouse down set initial mouse location data
-  function handleMouseDown(e) {
+  const handleMouseDown = (e) => {
     if (e.button === 2) return;
 
     // Mobile and touch devices use e.changedTouches
@@ -207,20 +224,19 @@ function Note(props) {
       yOffset: e.pageY - noteY,
       down: true,
     }));
-  }
+  };
 
   return (
     <div
       className={`note ${mouseDragData.down ? "dragging" : ""}`}
       style={{
-        background: `rgba(var(--${props.note.colour}), 0.1)`,
-        border: `1px solid rgba(var(--${props.note.colour}), 0.5)`,
+        background: `rgba(var(--${note.colour}), 0.1)`,
+        border: `1px solid rgba(var(--${note.colour}), 0.5)`,
         zIndex: zIndex,
         transition: mouseDragData.down ? "none" : "all 250ms ease",
       }}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
-      onBlur={handleNoteBlur}
       ref={noteRef}
     >
       <div
@@ -230,22 +246,20 @@ function Note(props) {
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       ></div>
-      <div tabIndex="-1" className={styles.editNote}>
+      <div className={styles.editNote}>
         <NoteText
-          title={props.note.title}
-          content={props.note.content}
+          title={note.title}
+          content={note.content}
           extendContentArea={false}
-          showTitle={isActive || props.note.title}
+          showTitle={isActive || note.title}
           showContent={
-            isActive ||
-            props.note.content ||
-            (!props.note.title && !props.note.content)
+            isActive || note.content || (!note.title && !note.content)
           }
           onTextChange={handleTextChange}
           forceFocus={isActive}
         />
       </div>
-      <NoteTag tagName={props.note.tag} />
+      <NoteTag tagName={note.tag} />
       <UtilityContainer
         show={
           mouseOver ||
@@ -259,11 +273,11 @@ function Note(props) {
           name="tag"
           icon="tag"
           setDropdownMenuStatus={setDropdownMenuStatus}
-          width="100%"
+          width="20rem"
         >
           <TagSelector
-            tags={props.tags}
-            activeTag={props.note.tag}
+            tags={tags}
+            activeTag={note.tag}
             onSelectTag={handleSelectTag}
             onClearTag={handleClearTag}
           />
@@ -282,9 +296,7 @@ function Note(props) {
         >
           <button
             className={styles.deleteButton}
-            onClick={() =>
-              props.onDelete(props.note.clientId, props.note.documentId)
-            }
+            onClick={() => onDelete(note.clientId, note.documentId)}
           >
             Delete note
           </button>
@@ -293,5 +305,3 @@ function Note(props) {
     </div>
   );
 }
-
-export default Note;

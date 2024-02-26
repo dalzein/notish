@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { auth } from "../../firebase/firebase";
 import { signInWithGoogle, signOutUser } from "../../firebase/firebase-auth";
 import Guide from "../Guide/Guide";
 import Modal from "../Modal/Modal";
 import styles from "./Header.module.css";
 
-function Header(props) {
+export default function Header({
+  isSyncing,
+  userId,
+  awaitingAuthRedirectResult,
+}) {
   const [showSignInModal, setShowSignInModal] = useState(false);
   const [guideModalIsOpen, setGuideModalIsOpen] = useState(
     window.localStorage.getItem("guideDismissed") ? false : true
   );
 
-  if (props.userId && showSignInModal) {
+  if (userId && showSignInModal) {
     setShowSignInModal(false);
   }
 
-  function handleGuideDismiss() {
+  const handleGuideDismiss = useCallback(() => {
     setGuideModalIsOpen(false);
     window.localStorage.setItem("guideDismissed", true);
-  }
+  }, []);
 
   return (
     <header>
@@ -26,9 +30,9 @@ function Header(props) {
         <img src="/android-chrome-192x192.png" alt="logo" draggable="false" />
       </div>
       <div className={styles.headerRight}>
-        {props.userId && (
+        {userId && (
           <div className={styles.authInfo}>
-            {props.isSyncing ? (
+            {isSyncing ? (
               <svg
                 width="24"
                 height="24"
@@ -76,7 +80,7 @@ function Header(props) {
             </button>
           </div>
         )}
-        {!props.userId && !props.awaitingAuthRedirectResult && (
+        {!userId && !awaitingAuthRedirectResult && (
           <button className={styles.signInButton} onClick={signInWithGoogle}>
             <svg
               width="24"
@@ -94,7 +98,7 @@ function Header(props) {
             <span>Sign in with Google</span>
           </button>
         )}
-        {props.awaitingAuthRedirectResult && (
+        {awaitingAuthRedirectResult && (
           <svg
             width="24"
             height="24"
@@ -123,5 +127,3 @@ function Header(props) {
     </header>
   );
 }
-
-export default Header;

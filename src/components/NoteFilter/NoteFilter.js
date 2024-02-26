@@ -1,34 +1,39 @@
 import React, { useEffect } from "react";
 import styles from "./NoteFilter.module.css";
 
-function NoteFilter(props) {
+export default function NoteFilter({
+  tags,
+  currentTagFilter,
+  changeTagFilter,
+  hasNotes,
+}) {
   useEffect(() => {
-    if (!props.tags || !props.tags.includes(props.currentTagFilter)) {
-      props.changeTagFilter("all");
+    if (!tags || !tags.includes(currentTagFilter)) {
+      changeTagFilter("all");
     }
-  }, [props]);
+  });
 
-  function handleClick(e) {
-    props.changeTagFilter(e.currentTarget.name);
-  }
+  const handleClick = (e) => {
+    changeTagFilter(e.currentTarget.name);
+  };
 
   return (
-    props.hasNotes &&
-    props.tags?.length > 0 && (
+    hasNotes &&
+    tags?.length > 0 && (
       <div className={styles.noteFilter}>
         <button
           name="all"
-          className={`${props.currentTagFilter === "all" ? styles.active : ""}`}
+          className={`${currentTagFilter === "all" ? styles.active : ""}`}
           type="button"
           onClick={handleClick}
         >
           All
         </button>
-        {props.tags.map((tag, index) => (
+        {tags.map((tag, index) => (
           <button
             key={index}
             name={tag}
-            className={`${props.currentTagFilter === tag ? styles.active : ""}`}
+            className={`${currentTagFilter === tag ? styles.active : ""}`}
             type="button"
             onClick={handleClick}
           >
@@ -53,5 +58,3 @@ function NoteFilter(props) {
     )
   );
 }
-
-export default NoteFilter;

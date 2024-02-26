@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ColourSelector from "../ColourSelector/ColourSelector";
 import IconButton from "../IconButton/IconButton";
 import Modal from "../Modal/Modal";
@@ -10,7 +10,8 @@ import UtilityContainer from "../UtilityContainer/UtilityContainer";
 import UtilityDropdown from "../UtilityDropdown/UtilityDropdown";
 import styles from "./CreateArea.module.css";
 
-function CreateArea(props) {
+export default function CreateArea({ onAdd, tags, noteLimitReached }) {
+  const noteRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
   const [note, setNote] = useState({
     title: "",
@@ -20,25 +21,44 @@ function CreateArea(props) {
   });
   const [noteLimitModalIsOpen, setNoteLimitModalIsOpen] = useState(false);
 
-  function onTextChange(name, value) {
+  useEffect(() => {
+    const handleWindowClick = (e) => {
+      if (noteRef.current?.contains(e.target)) return;
+      if (!note.title && !note.content && !note.tag) {
+        setIsActive(false);
+        setNote({
+          title: "",
+          content: "",
+          tag: "",
+          colour: "grey",
+        });
+      }
+    };
+
+    window.addEventListener("click", handleWindowClick);
+
+    return () => window.removeEventListener("click", handleWindowClick);
+  }, [note.content, note.title, note.tag]);
+
+  const handleTextChange = useCallback((name, value) => {
     setNote((prevNote) => ({
       ...prevNote,
       [name]: value,
     }));
-  }
+  }, []);
 
-  function submitNote(e) {
+  const submitNote = (e) => {
     e && e.stopPropagation();
     e && e.preventDefault();
 
     if (!note.title && !note.content && !note.tag) return;
 
-    if (props.noteLimitReached) {
+    if (noteLimitReached) {
       setNoteLimitModalIsOpen(true);
       return;
     }
 
-    props.onAdd({
+    onAdd({
       ...note,
       clientId: nanoid(),
     });
@@ -51,54 +71,40 @@ function CreateArea(props) {
     });
 
     setIsActive(false);
-  }
+  };
 
-  // If the user clicks out of the create area create note if there's content, otherwise collapse the create area
-  function handleBlur(e) {
-    if (e.currentTarget.contains(e.relatedTarget)) return;
-    if (!note.title && !note.content && !note.tag) {
-      setIsActive(false);
-      setNote({
-        title: "",
-        content: "",
-        tag: "",
-        colour: "grey",
-      });
-    }
-  }
-
-  function handleFocus() {
+  const handleFocus = () => {
     setIsActive(true);
-  }
+  };
 
-  function handleSelectTag(tag) {
+  const handleSelectTag = useCallback((tag) => {
     setNote((previousValue) => ({
       ...previousValue,
       tag,
     }));
-  }
+  }, []);
 
-  function handleClearTag(e) {
+  const handleClearTag = useCallback((e) => {
     e.stopPropagation();
     setNote((previousValue) => ({
       ...previousValue,
       tag: "",
     }));
-  }
+  }, []);
 
-  function handleSelectColour(colourString) {
+  const handleSelectColour = useCallback((colourString) => {
     setNote((previousValue) => ({
       ...previousValue,
       colour: colourString,
     }));
-  }
+  }, []);
 
   return (
     <div className={styles.createArea}>
       <div
         className={styles.createNote}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
+        onClick={handleFocus}
+        ref={noteRef}
         style={{
           background: `rgba(var(--${isActive ? note.colour : "grey"}), 0.1)`,
           border: `1px solid rgba(var(--${
@@ -112,27 +118,25 @@ function CreateArea(props) {
           extendContentArea={isActive}
           showTitle={isActive}
           showContent={true}
-          onTextChange={onTextChange}
+          onTextChange={handleTextChange}
           forceFocus={isActive}
         />
         <NoteTag tagName={note.tag} />
         {isActive && (
-          <div className={styles.utilityWrapper}>
-            <UtilityContainer show="true">
-              <UtilityDropdown name="tag" icon="tag" width="100%">
-                <TagSelector
-                  tags={props.tags}
-                  activeTag={note.tag}
-                  onSelectTag={handleSelectTag}
-                  onClearTag={handleClearTag}
-                />
-              </UtilityDropdown>
-              <UtilityDropdown name="colour" icon="colour">
-                <ColourSelector handleSelectColour={handleSelectColour} />
-              </UtilityDropdown>
-              <IconButton icon="add" onClick={submitNote} />
-            </UtilityContainer>
-          </div>
+          <UtilityContainer show="true">
+            <UtilityDropdown name="tag" icon="tag" width="20rem">
+              <TagSelector
+                tags={tags}
+                activeTag={note.tag}
+                onSelectTag={handleSelectTag}
+                onClearTag={handleClearTag}
+              />
+            </UtilityDropdown>
+            <UtilityDropdown name="colour" icon="colour">
+              <ColourSelector handleSelectColour={handleSelectColour} />
+            </UtilityDropdown>
+            <IconButton icon="add" onClick={submitNote} />
+          </UtilityContainer>
         )}
       </div>
 
@@ -157,5 +161,3 @@ function CreateArea(props) {
     </div>
   );
 }
-
-export default CreateArea;

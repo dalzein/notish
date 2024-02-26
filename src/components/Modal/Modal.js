@@ -10,9 +10,9 @@ export default function Modal({ isOpen, close, children }) {
     document.body.style.overflow = isOpen ? "hidden" : "inherit";
   }, [isOpen]);
 
-  function stopClickPropagation(e) {
+  const stopClickPropagation = (e) => {
     e.stopPropagation();
-  }
+  };
 
   return createPortal(
     <div

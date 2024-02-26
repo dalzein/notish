@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { auth } from "../../firebase/firebase";
 import {
   createNoteInFirestore,
@@ -14,7 +14,7 @@ import Header from "../Header/Header";
 import NoteBoard from "../NoteBoard/NoteBoard";
 import NoteFilter from "../NoteFilter/NoteFilter";
 
-function App() {
+export default function App() {
   const localStorageKey = "localNotes";
   const noteLimit = 20;
   const [userId, setUserId] = useState(null);
@@ -95,43 +95,49 @@ function App() {
     }, 5000);
   }, []);
 
-  function addNote(newNote) {
-    // Add the note locally
-    setNotes((previousValue) => [newNote, ...previousValue]);
+  const addNote = useCallback(
+    (newNote) => {
+      // Add the note locally
+      setNotes((previousValue) => [newNote, ...previousValue]);
 
-    // If the user is auth'd, add the note to Firestore asynchronously
-    if (userId) {
-      setIsSyncing(true);
-      createNoteInFirestore(userId, newNote, true).then((documentId) => {
-        setNotes((previousValue) => {
-          const newNotes = [...previousValue];
-          const index = newNotes.findIndex(
-            (note) => note.clientId === newNote.clientId
-          );
-          newNotes[index] = { ...newNotes[index], documentId };
-          return newNotes;
+      // If the user is auth'd, add the note to Firestore asynchronously
+      if (userId) {
+        setIsSyncing(true);
+        createNoteInFirestore(userId, newNote, true).then((documentId) => {
+          setNotes((previousValue) => {
+            const newNotes = [...previousValue];
+            const index = newNotes.findIndex(
+              (note) => note.clientId === newNote.clientId
+            );
+            newNotes[index] = { ...newNotes[index], documentId };
+            return newNotes;
+          });
+          setIsSyncing(false);
         });
-        setIsSyncing(false);
-      });
-    }
-  }
+      }
+    },
+    [userId]
+  );
 
-  function deleteNote(clientId, documentId) {
-    // Delete the note locally
-    setNotes((prevNotes) =>
-      prevNotes.filter((noteItem) => noteItem.clientId !== clientId)
-    );
+  const deleteNote = useCallback(
+    (clientId, documentId) => {
+      // Delete the note locally
+      setNotes((prevNotes) =>
+        prevNotes.filter((noteItem) => noteItem.clientId !== clientId)
+      );
 
-    // If the user is auth'd, delete the note from Firestore asynchronously
-    if (userId && documentId) {
-      setIsSyncing(true);
-      deleteNoteFromFirestore(userId, clientId, documentId).then(() => {
-        setIsSyncing(false);
-      });
-    }
-  }
+      // If the user is auth'd, delete the note from Firestore asynchronously
+      if (userId && documentId) {
+        setIsSyncing(true);
+        deleteNoteFromFirestore(userId, clientId, documentId).then(() => {
+          setIsSyncing(false);
+        });
+      }
+    },
+    [userId]
+  );
 
-  function editNote(clientId, updatedNote) {
+  const editNote = useCallback((clientId, updatedNote) => {
     // Update the note locally
     setNotes((previousNotes) => {
       const notes = [...previousNotes];
@@ -139,46 +145,52 @@ function App() {
       notes[index] = updatedNote;
       return notes;
     });
-  }
+  }, []);
 
   // If the user is auth'd, update the note in Firestore asynchronously
-  function syncNoteWithFirestore(updatedNote) {
-    if (userId) {
-      setIsSyncing(true);
-      updateNoteInFirestore(userId, updatedNote).then(() => {
-        setIsSyncing(false);
-      });
-    }
-  }
+  const syncNoteWithFirestore = useCallback(
+    (updatedNote) => {
+      if (userId) {
+        setIsSyncing(true);
+        updateNoteInFirestore(userId, updatedNote).then(() => {
+          setIsSyncing(false);
+        });
+      }
+    },
+    [userId]
+  );
 
-  function changeTagFilter(tag) {
+  const changeTagFilter = useCallback((tag) => {
     setTagFilter(tag);
-  }
+  }, []);
 
-  function updateNotePositions(newNotePositions) {
-    // Reorder the notes locally
-    setNotes((previousValue) => {
-      const newNotes = [...previousValue];
-      newNotes.sort(
-        (a, b) =>
-          newNotePositions.indexOf(a.clientId) -
-          newNotePositions.indexOf(b.clientId)
-      );
-      return newNotes;
-    });
+  const updateNotePositions = useCallback(
+    (newNotePositions) => {
+      // Reorder the notes locally
+      setNotes((previousValue) => {
+        const newNotes = [...previousValue];
+        newNotes.sort(
+          (a, b) =>
+            newNotePositions.indexOf(a.clientId) -
+            newNotePositions.indexOf(b.clientId)
+        );
+        return newNotes;
+      });
 
-    // If the user is auth'd, update position data in Firestore asynchronously
-    if (userId) {
-      setIsSyncing(true);
-      updateNotePositionsInFirestore(userId, newNotePositions).then(() =>
-        setIsSyncing(false)
-      );
-    }
-  }
+      // If the user is auth'd, update position data in Firestore asynchronously
+      if (userId) {
+        setIsSyncing(true);
+        updateNotePositionsInFirestore(userId, newNotePositions).then(() =>
+          setIsSyncing(false)
+        );
+      }
+    },
+    [userId]
+  );
 
-  function startSyncing() {
+  const startSyncing = useCallback(() => {
     setIsSyncing(true);
-  }
+  }, []);
 
   return (
     <div>
@@ -215,5 +227,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

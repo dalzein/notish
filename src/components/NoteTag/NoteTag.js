@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "./NoteTag.module.css";
 
-function NoteTag(props) {
+export default function NoteTag({ tagName }) {
   return (
-    props.tagName && (
+    tagName && (
       <div className={styles.noteTag}>
-        <span>{props.tagName}</span>
+        <span>{tagName}</span>
       </div>
     )
   );
 }
-
-export default NoteTag;

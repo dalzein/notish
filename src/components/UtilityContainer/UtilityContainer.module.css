@@ -1,11 +1,10 @@
 .utilityContainer {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
   opacity: 0;
   transition: all 250ms ease;
   padding: 0 0.25rem 0.25rem;
+  align-self: flex-end;
 }
 
 .utilityContainer.show {

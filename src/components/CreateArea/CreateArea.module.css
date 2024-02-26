@@ -7,12 +7,9 @@
   max-width: 25rem;
   margin: auto;
   border-radius: 1.25rem;
-}
-
-.utilityWrapper {
-  width: 100%;
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .modalContent {

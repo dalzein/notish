@@ -1,49 +1,54 @@
 import React, { useState } from "react";
 import styles from "./TagSelector.module.css";
 
-function TagSelector(props) {
+export default function TagSelector({
+  tags,
+  activeTag,
+  onSelectTag,
+  onClearTag,
+}) {
   const [tag, setTag] = useState("");
 
-  function handleAddTag() {
+  const handleAddTag = () => {
     if (!tag) return;
 
-    props.onSelectTag(tag);
+    onSelectTag(tag);
 
     setTag("");
-  }
+  };
 
   // Allow Enter key to save the tag
-  function handleKeyDown(e) {
+  const handleKeyDown = (e) => {
     if (e.key !== "Enter" || !tag) return;
 
-    props.onSelectTag(tag);
+    onSelectTag(tag);
 
     setTag("");
-  }
+  };
 
-  function handleSelectTag(e) {
-    props.onSelectTag(e.currentTarget.getAttribute("name"));
-  }
+  const handleSelectTag = (e) => {
+    onSelectTag(e.currentTarget.getAttribute("name"));
+  };
 
   return (
     <div>
-      {props.tags.length > 0 || props.activeTag ? (
+      {tags.length > 0 || activeTag ? (
         <div className={styles.existingTags}>
-          {props.tags.length > 0 &&
-            props.tags.map((tag, index) => (
+          {tags.length > 0 &&
+            tags.map((tag, index) => (
               <div
                 name={tag}
                 key={index}
                 className={`${styles.existingTag} ${
-                  tag === props.activeTag ? styles.active : ""
+                  tag === activeTag ? styles.active : ""
                 }`}
                 onClick={handleSelectTag}
               >
                 <div className={styles.tagName} style={{ overflow: "hidden" }}>
                   <span>{tag}</span>
                 </div>
-                {tag === props.activeTag && (
-                  <div className={styles.clearTag} onClick={props.onClearTag}>
+                {tag === activeTag && (
+                  <div className={styles.clearTag} onClick={onClearTag}>
                     <svg
                       width="24"
                       height="24"
@@ -66,14 +71,14 @@ function TagSelector(props) {
                 )}
               </div>
             ))}
-          {props.activeTag && !props.tags.includes(props.activeTag) && (
+          {activeTag && !tags.includes(activeTag) && (
             <span
-              name={props.activeTag}
+              name={activeTag}
               className={`${styles.existingTag} ${styles.active}`}
               onClick={handleSelectTag}
             >
-              {props.activeTag}
-              <div className={styles.clearTag} onClick={props.onClearTag}>
+              {activeTag}
+              <div className={styles.clearTag} onClick={onClearTag}>
                 <svg
                   width="24"
                   height="24"
@@ -130,5 +135,3 @@ function TagSelector(props) {
     </div>
   );
 }
-
-export default TagSelector;
