@@ -48,6 +48,17 @@ button {
   font-size: 1rem;
 }
 
+p {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
 ::placeholder {
   color: var(--foreground-secondary);
+}
+
+@media (max-width: 768px) {
+  p {
+    font-size: 1rem;
+  }
 }
