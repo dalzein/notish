@@ -77,7 +77,7 @@ export default function Note({
       shouldUpdate = shouldUpdate || note[key] !== noteSnapshot[key];
     });
 
-    function syncNoteUpdates() {
+    const syncNoteUpdates = () => {
       setNoteSnapshot((previousValue) => ({
         ...previousValue,
         title: note.title,
@@ -86,7 +86,7 @@ export default function Note({
         tag: note.tag,
       }));
       syncNoteWithFirestore(note);
-    }
+    };
 
     // Debounce update calls to Firestore database
     if (shouldUpdate) {

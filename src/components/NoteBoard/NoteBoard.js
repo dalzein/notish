@@ -20,15 +20,15 @@ export default function NoteBoard({
   // Determine the number of columns we can fit on resize
   useLayoutEffect(() => {
     // We need a debouncer as the resize event fires rapidly
-    function debounce(func) {
+    const debounce = (func) => {
       let timer;
-      return function (event) {
+      return (event) => {
         if (timer) clearTimeout(timer);
         timer = setTimeout(func, 100, event);
       };
-    }
+    };
 
-    function handleResize() {
+    const handleResize = () => {
       const noteBoardWidth = wrapperRef.current.parentElement.offsetWidth;
 
       let newColumnCount = Math.floor(
@@ -36,7 +36,7 @@ export default function NoteBoard({
       );
       newColumnCount = newColumnCount === 0 ? 1 : newColumnCount;
       setColumnCount(newColumnCount);
-    }
+    };
 
     handleResize();
 
