@@ -18,7 +18,7 @@ export default function Note({
   onNoteDrag,
 }) {
   const noteRef = useRef(null);
-  const isTouchScreen =
+  const deviceIsTouchScreen =
     "maxTouchPoints" in navigator && navigator.maxTouchPoints > 0;
   const [mouseOver, setMouseOver] = useState(false);
   const [showDropdown, setShowDropdown] = useState({
@@ -99,10 +99,6 @@ export default function Note({
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      if (e.changedTouches && e.changedTouches.length) {
-        e = e.changedTouches[0];
-      }
-
       const deltaX = Math.abs(e.pageX - mouseDragData.xStart);
       const deltaY = Math.abs(e.pageY - mouseDragData.yStart);
 
@@ -128,10 +124,6 @@ export default function Note({
     const handleMouseUp = (e) => {
       e.preventDefault();
 
-      if (e.changedTouches && e.changedTouches.length) {
-        e = e.changedTouches[0];
-      }
-
       // If it didn't count as a drag, set focus, otherwise tell the parent to update the new note positions if they changed
       if (!mouseDragData.dragging) {
         setIsActive(true);
@@ -149,16 +141,12 @@ export default function Note({
     // Attach mouse move and mouse up event listeners to the document if the mouse is down on a note
     if (mouseDragData.down) {
       document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("touchmove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
-      document.addEventListener("touchend", handleMouseUp);
     }
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("touchmove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
-      document.removeEventListener("touchend", handleMouseUp);
     };
   }, [
     mouseDragData.containerX,
@@ -205,11 +193,6 @@ export default function Note({
   const handleMouseDown = (e) => {
     if (e.button === 2) return;
 
-    // Mobile and touch devices use e.changedTouches
-    if (e.changedTouches && e.changedTouches.length) {
-      e = e.changedTouches[0];
-    }
-
     const { x: noteX, y: noteY } = e.target.getBoundingClientRect();
     const { x: containerX, y: containerY } = document
       .getElementsByClassName("note-masonry-wrapper")[0]
@@ -241,10 +224,9 @@ export default function Note({
     >
       <div
         className={`${styles.noteScreen} ${isActive ? styles.hidden : ""} ${
-          isTouchScreen ? styles.overlay : ""
+          deviceIsTouchScreen ? styles.overlay : ""
         }`}
         onMouseDown={handleMouseDown}
-        onTouchStart={handleMouseDown}
       ></div>
       <div className={styles.editNote}>
         <NoteText
