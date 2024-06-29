@@ -89,6 +89,8 @@ export default function NoteBoard({
       let newPositionIndex = notePositions.indexOf(clientId);
       let moveTargetToEnd = true;
 
+      const scrollY = window.scrollY;
+
       // Loop through the notes and determine their new locations
       for (let i = 0; i < notes.length; i++) {
         if (!notes[i].classList.contains("dragging")) {
@@ -105,8 +107,8 @@ export default function NoteBoard({
                 gutter * (i - gap) -
                 gutter <=
                 x &&
-              containerY + notes[i].offsetHeight >= y &&
-              containerY <= y
+              containerY + notes[i].offsetHeight + scrollY >= y &&
+              containerY + scrollY <= y
             ) {
               // We found where the cursor is, set the offset flag, set the new position of the note being dragged and add its height to the column heights array
               columnHeights.push(targetNote.offsetHeight);
@@ -152,9 +154,13 @@ export default function NoteBoard({
                 gutter * columnIndex -
                 gutter <=
                 x &&
-              containerY + minColumnHeight + notes[i].offsetHeight + gutter >=
+              containerY +
+                minColumnHeight +
+                notes[i].offsetHeight +
+                gutter +
+                scrollY >=
                 y &&
-              containerY + minColumnHeight <= y
+              containerY + minColumnHeight + scrollY <= y
             ) {
               // We found where the cursor is, set the new position of the note being dragged and add its height to the column heights array
               newPositionIndex = i - gap;

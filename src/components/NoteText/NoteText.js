@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import styles from "./NoteText.module.css";
 
-function NoteText({
+export default function NoteText({
   title,
   content,
   extendContentArea,
@@ -81,5 +81,3 @@ function NoteText({
     </div>
   );
 }
-
-export default NoteText;
