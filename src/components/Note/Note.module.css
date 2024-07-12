@@ -9,6 +9,10 @@
   flex-direction: column;
 }
 
+:global(.note.dragging) {
+  transition: none;
+}
+
 .editNote {
   display: flex;
   flex-direction: column;

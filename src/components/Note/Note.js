@@ -27,17 +27,6 @@ export default function Note({
     delete: false,
   });
   const [isActive, setIsActive] = useState(false);
-  const [mouseDragData, setMouseDragData] = useState({
-    xStart: 0,
-    yStart: 0,
-    xOffset: 0,
-    yOffset: 0,
-    down: false,
-    containerX: 0,
-    containerY: 0,
-    dragging: false,
-    mouseDeltaThreshold: 6,
-  });
   const [noteSnapshot, setNoteSnapshot] = useState({
     title: note.title,
     content: note.content,
@@ -51,7 +40,7 @@ export default function Note({
     showDropdown.colour ||
     showDropdown.tag ||
     showDropdown.delete ||
-    mouseDragData.down
+    noteRef.current?.classList.contains("dragging")
       ? 1000
       : 1;
 
@@ -97,71 +86,6 @@ export default function Note({
     return () => clearTimeout(timeout);
   }, [noteSnapshot, note, syncNoteWithFirestore, startSyncing]);
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const deltaX = Math.abs(e.pageX - mouseDragData.xStart);
-      const deltaY = Math.abs(e.pageY - mouseDragData.yStart);
-
-      // Determine if we're either just clicking on or dragging the note based on movement delta
-      if (
-        deltaX > mouseDragData.mouseDeltaThreshold ||
-        deltaY > mouseDragData.mouseDeltaThreshold ||
-        mouseDragData.dragging
-      ) {
-        noteRef.current.style.transform = `translate(${
-          e.pageX - mouseDragData.xOffset - mouseDragData.containerX - 1
-        }px, ${
-          e.pageY - mouseDragData.yOffset - mouseDragData.containerY - 1
-        }px)`;
-        onNoteDrag(note.clientId, e.pageX, e.pageY);
-        setMouseDragData((previousValue) => ({
-          ...previousValue,
-          dragging: true,
-        }));
-      }
-    };
-
-    const handleMouseUp = (e) => {
-      e.preventDefault();
-
-      // If it didn't count as a drag, set focus, otherwise tell the parent to update the new note positions if they changed
-      if (!mouseDragData.dragging) {
-        setIsActive(true);
-      } else {
-        onNoteDrag(note.clientId, e.pageX, e.pageY, true);
-      }
-
-      setMouseDragData((previousValue) => ({
-        ...previousValue,
-        down: false,
-        dragging: false,
-      }));
-    };
-
-    // Attach mouse move and mouse up event listeners to the document if the mouse is down on a note
-    if (mouseDragData.down) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [
-    mouseDragData.containerX,
-    mouseDragData.containerY,
-    mouseDragData.down,
-    mouseDragData.dragging,
-    mouseDragData.mouseDeltaThreshold,
-    mouseDragData.xOffset,
-    mouseDragData.xStart,
-    mouseDragData.yOffset,
-    mouseDragData.yStart,
-    note.clientId,
-    onNoteDrag,
-  ]);
-
   const handleTextChange = useCallback(
     (name, value) => {
       onEdit(note.clientId, { ...note, [name]: value });
@@ -197,26 +121,65 @@ export default function Note({
     const { x: containerX, y: containerY } = document
       .getElementsByClassName("note-masonry-wrapper")[0]
       .getBoundingClientRect();
-    setMouseDragData((previousValue) => ({
-      ...previousValue,
-      containerX,
-      containerY,
-      xStart: e.pageX,
-      yStart: e.pageY,
-      xOffset: e.pageX - noteX,
-      yOffset: e.pageY - noteY,
-      down: true,
-    }));
+    const xStart = e.pageX;
+    const yStart = e.pageY;
+    const xOffset = e.pageX - noteX;
+    const yOffset = e.pageY - noteY;
+    const mouseDeltaThreshold = 6;
+    let dragging = false;
+
+    const handleMouseMove = (e) => {
+      const deltaX = Math.abs(e.pageX - xStart);
+      const deltaY = Math.abs(e.pageY - yStart);
+
+      // Determine if we're dragging or not
+      if (
+        !dragging &&
+        (deltaX > mouseDeltaThreshold || deltaY > mouseDeltaThreshold)
+      ) {
+        dragging = true;
+        noteRef.current.classList.toggle("dragging", true);
+      }
+
+      // Determine if we're either just clicking on or dragging the note based on movement delta
+      if (dragging) {
+        noteRef.current.style.transform = `translate(${
+          e.pageX - xOffset - containerX - 1
+        }px, ${e.pageY - yOffset - containerY - 1}px)`;
+
+        onNoteDrag(note.clientId, e.pageX, e.pageY);
+      }
+    };
+
+    const handleMouseUp = (e) => {
+      e.preventDefault();
+
+      // If it didn't count as a drag, set focus, otherwise update the new note positions if they've changed
+      if (!dragging) {
+        setIsActive(true);
+      } else {
+        onNoteDrag(note.clientId, e.pageX, e.pageY, true);
+      }
+
+      noteRef.current.classList.toggle("dragging", false);
+
+      // Remove listeners
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    // Attach mouse move and mouse up event listeners to the document if the mouse is down on a note
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
   };
 
   return (
     <div
-      className={`note ${mouseDragData.down ? "dragging" : ""}`}
+      className="note"
       style={{
         background: `rgba(var(--${note.colour}), 0.1)`,
         border: `1px solid rgba(var(--${note.colour}), 0.5)`,
         zIndex: zIndex,
-        transition: mouseDragData.down ? "none" : "all 250ms ease",
       }}
       onMouseEnter={() => setMouseOver(true)}
       onMouseLeave={() => setMouseOver(false)}
