@@ -24,7 +24,7 @@ export default function App() {
   const [tagFilter, setTagFilter] = useState("all");
   const [isSyncing, setIsSyncing] = useState(false);
 
-  // We'll check if a redirected flag was set (we set it before the user is redirected to Google sign in so that on redirect back to the site we know to wait for the auht result)
+  // We'll check if a redirected flag was set (we set it before the user is redirected to Google sign in so that on redirect back to the site we know to wait for the auth result)
   const [awaitingAuthRedirectResult, setAwaitingAuthRedirectResult] = useState(
     window.localStorage.getItem("redirected") ?? false
   );
