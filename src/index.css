@@ -7,14 +7,14 @@
   --purple: 189, 147, 249;
   --red: 255, 85, 85;
   --yellow: 241, 250, 140;
-  --grey: 68, 68, 68;
-  --background: #111;
-  --foreground: #fff;
-  --foreground-secondary: #fff8;
-  --accent-1: #222;
-  --accent-2: #333;
-  --accent-3: #444;
-  --accent-4: #555;
+  --grey: 38, 43, 54;
+  --background: rgb(15, 17, 21);
+  --foreground: rgb(225, 228, 234);
+  --foreground-secondary: rgb(106, 120, 149);
+  --accent-1: rgb(21, 24, 30);
+  --accent-2: rgb(30, 34, 42);
+  --accent-3: rgb(38, 43, 54);
+  --accent-4: rgb(47, 53, 66);
   --accent-5: #666;
   --accent-white-alpha-1: rgba(255, 255, 255, 0.05);
   --accent-white-alpha-2: rgba(255, 255, 255, 0.1);
@@ -28,7 +28,7 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Gabarito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: transparent;

@@ -5,13 +5,18 @@ header {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
+  border-bottom: 1px solid var(--accent-2);
 }
 
-.headerLeft img {
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.headerLeft svg {
+  color: var(--foreground);
   height: 2.25rem;
   width: 2.25rem;
-  opacity: 0.5;
-  vertical-align: top;
 }
 
 .headerRight {

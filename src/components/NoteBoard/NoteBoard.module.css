@@ -33,21 +33,6 @@
   margin-bottom: 0.5rem;
 }
 
-.noDragging {
-  margin: 0 1rem 2rem;
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: var(--foreground-secondary);
-}
-
-.noDragging svg {
-  margin-right: 0.25rem;
-  height: 12px;
-  width: 12px;
-  color: rgb(var(--red));
-}
-
 @media (max-width: 768px) {
   .note-board-wrapper {
     margin: 1.5rem 0;

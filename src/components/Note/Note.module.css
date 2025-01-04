@@ -11,6 +11,7 @@
 
 :global(.note.dragging) {
   transition: none;
+  z-index: 1000 !important;
 }
 
 .editNote {

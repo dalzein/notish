@@ -36,13 +36,9 @@ export default function Note({
 
   // Bring note forward if it's in focus
   const zIndex =
-    isActive ||
-    showDropdown.colour ||
-    showDropdown.tag ||
-    showDropdown.delete ||
-    noteRef.current?.classList.contains("dragging")
+    isActive || showDropdown.colour || showDropdown.tag || showDropdown.delete
       ? 1000
-      : 1;
+      : 0;
 
   useEffect(() => {
     const handleWindowClick = (e) => {
