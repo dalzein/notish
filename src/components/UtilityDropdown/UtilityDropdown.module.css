@@ -10,6 +10,7 @@
   z-index: 1000;
   background: var(--accent-1);
   transform: scale(0.8);
+  border: 1px solid var(--accent-2)
 }
 
 .dropdownMenu.show {

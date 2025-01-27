@@ -1,13 +1,12 @@
-import { auth } from "./firebase";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  sendPasswordResetEmail,
+  signInWithPopup,
   signOut,
   updateProfile,
-  sendPasswordResetEmail,
-  GoogleAuthProvider,
-  signInWithRedirect,
 } from "firebase/auth";
+import { auth } from "./firebase";
 
 const provider = new GoogleAuthProvider();
 provider.addScope("https://www.googleapis.com/auth/userinfo.profile");
@@ -19,13 +18,6 @@ export const signUpUser = (name, email, password) =>
         () => userCredential.user.uid
       )
     )
-    .catch((error) => {
-      throw error.code;
-    });
-
-export const signInUser = (email, password) =>
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => userCredential.user)
     .catch((error) => {
       throw error.code;
     });
@@ -48,5 +40,5 @@ export const resetPassword = (email) =>
 export const signInWithGoogle = () => {
   // We'll set a flag in local storage so that when the browser is redirected back to the site the app knows to wait for the auth result (which takes a while for some reason)
   localStorage.setItem("redirected", "true");
-  signInWithRedirect(auth, provider);
+  signInWithPopup(auth, provider);
 };

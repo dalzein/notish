@@ -27,15 +27,12 @@ export default function Header({
   return (
     <header>
       <div className={styles.headerLeft}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="currentColor"
-        >
-          <path d="m499-287 335-335-52-52-335 335 52 52Zm-261 87q-100-5-149-42T40-349q0-65 53.5-105.5T242-503q39-3 58.5-12.5T320-542q0-26-29.5-39T193-600l7-80q103 8 151.5 41.5T400-542q0 53-38.5 83T248-423q-64 5-96 23.5T120-349q0 35 28 50.5t94 18.5l-4 80Zm280 7L353-358l382-382q20-20 47.5-20t47.5 20l70 70q20 20 20 47.5T900-575L518-193Zm-159 33q-17 4-30-9t-9-30l33-159 165 165-159 33Z" />
-        </svg>
+        <h1>
+          <span>Notish</span>
+          <span className={styles.description}>
+            Interactive note-taking app
+          </span>
+        </h1>
       </div>
       <div className={styles.headerRight}>
         {userId && (
@@ -63,17 +60,14 @@ export default function Header({
               </svg>
             ) : (
               <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="currentColor"
                 className={styles.check}
               >
-                <path
-                  d="M10.5858 13.4142L7.75735 10.5858L6.34314 12L10.5858 16.2427L17.6568 9.1716L16.2426 7.75739L10.5858 13.4142Z"
-                  fill="currentColor"
-                />
+                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
               </svg>
             )}
             <span className={styles.greeting}>
@@ -91,17 +85,28 @@ export default function Header({
         {!userId && !awaitingAuthRedirectResult && (
           <button className={styles.signInButton} onClick={signInWithGoogle}>
             <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
+              version="1.1"
               xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
               className={styles.gIcon}
             >
               <path
-                d="M6 12C6 15.3137 8.68629 18 12 18C14.6124 18 16.8349 16.3304 17.6586 14H12V10H21.8047V14H21.8C20.8734 18.5645 16.8379 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.445 2 18.4831 3.742 20.2815 6.39318L17.0039 8.68815C15.9296 7.06812 14.0895 6 12 6C8.68629 6 6 8.68629 6 12Z"
-                fill="currentColor"
-              />
+                fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"
+              ></path>
+              <path
+                fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"
+              ></path>
+              <path
+                fill="#FBBC05"
+                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"
+              ></path>
+              <path
+                fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"
+              ></path>
+              <path fill="none" d="M0 0h48v48H0z"></path>
             </svg>
             <span>Sign in with Google</span>
           </button>
