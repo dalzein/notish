@@ -11,7 +11,7 @@ export default function NoteBoard({
   startSyncing,
 }) {
   const wrapperRef = useRef(null);
-  const columnWidth = 320;
+  const columnWidth = 352;
   const gutter = 20;
   const [columnCount, setColumnCount] = useState(1);
   const [displayHeight, setDisplayHeight] = useState(0);
@@ -205,27 +205,6 @@ export default function NoteBoard({
   return (
     <div className={styles.noteBoardWrapper}>
       <div className={styles.noteBoard}>
-        {!notes.length && (
-          <div className={styles.noNotes}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17.6568 8.96219L16.2393 10.3731L12.9843 7.10285L12.9706 20.7079L10.9706 20.7059L10.9843 7.13806L7.75404 10.3532L6.34314 8.93572L12.0132 3.29211L17.6568 8.96219Z"
-                fill="currentColor"
-              />
-            </svg>
-            <h2>Create a note!</h2>
-            <p>
-              You'll be able to edit the text, colour and tags of your notes.
-              You can also re-order them by clicking and dragging!
-            </p>
-          </div>
-        )}
         <div
           className="note-masonry-wrapper"
           style={{

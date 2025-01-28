@@ -106,10 +106,10 @@ export default function CreateArea({ onAdd, tags, noteLimitReached }) {
         onClick={handleFocus}
         ref={noteRef}
         style={{
-          background: `rgba(var(--${isActive ? note.colour : "grey"}), 0.1)`,
-          border: `1px solid rgba(var(--${
+          background: `hsl(var(--${isActive ? note.colour : "grey"}) / 20%)`,
+          border: `1px solid hsl(var(--${
             isActive ? note.colour : "grey"
-          }), 0.5)`,
+          }) / 60%)`,
         }}
       >
         <NoteText
@@ -124,7 +124,7 @@ export default function CreateArea({ onAdd, tags, noteLimitReached }) {
         <NoteTag tagName={note.tag} />
         {isActive && (
           <UtilityContainer show="true">
-            <UtilityDropdown name="tag" icon="tag" width="20rem">
+            <UtilityDropdown name="tag" icon="tag" width="22rem">
               <TagSelector
                 tags={tags}
                 activeTag={note.tag}

@@ -1,12 +1,8 @@
-.createArea {
-  padding: 0 0.5rem;
-}
-
 .createNote {
   position: relative;
   max-width: 25rem;
   margin: auto;
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -23,7 +19,7 @@
 .modalContent svg {
   width: 3rem;
   height: 3rem;
-  color: rgb(var(--red));
+  color: hsl(var(--red));
 }
 
 .modalContent p {

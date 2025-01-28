@@ -18,7 +18,7 @@ export default function ColourSelector({ handleSelectColour }) {
           key={index}
           className={styles.colour}
           name="colour"
-          style={{ background: `rgb(var(--${colourString}))` }}
+          style={{ background: `hsl(var(--${colourString}))` }}
           onClick={() => handleSelectColour(colourString)}
         ></button>
       ))}

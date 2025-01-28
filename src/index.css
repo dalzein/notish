@@ -1,23 +1,19 @@
 :root {
-  --rose: 255, 85, 85;
-  --cyan: 139, 233, 253;
-  --green: 80, 250, 123;
-  --orange: 255, 184, 108;
-  --pink: 255, 121, 198;
-  --purple: 189, 147, 249;
-  --red: 255, 85, 85;
-  --yellow: 241, 250, 140;
-  --grey: 38, 43, 54;
-  --background: rgb(15, 17, 21);
-  --foreground: rgb(225, 228, 234);
-  --foreground-secondary: rgb(106, 120, 149);
-  --accent-1: rgb(21, 24, 30);
-  --accent-2: rgb(30, 34, 42);
-  --accent-3: rgb(38, 43, 54);
-  --accent-4: rgb(47, 53, 66);
-  --accent-white-alpha-1: rgba(255, 255, 255, 0.05);
-  --accent-white-alpha-2: rgba(255, 255, 255, 0.1);
-  --accent-white-alpha-3: rgba(255, 255, 255, 0.15);
+  --cyan: 191 97% 77%;
+  --green: 135 94% 65%;
+  --orange: 31 100% 71%;
+  --pink: 326 100% 74%;
+  --purple: 265 89% 78%;
+  --red: 0 100% 67%;
+  --yellow: 65 92% 76%;
+  --grey: 0 0% 20%;
+  --background: hsl(0 0% 0%);
+  --foreground: hsl(0 0% 100%);
+  --foreground-secondary: hsl(0 0% 50%);
+  --accent-1: hsl(0 0% 4%);
+  --accent-2: hsl(0 0% 8%);
+  --accent-3: hsl(0 0% 12%);
+  --accent-4: hsl(0 0% 16%);
 }
 
 * {
@@ -36,6 +32,10 @@ body {
   user-select: none;
   max-width: 70rem;
   margin: auto;
+}
+
+main {
+  padding: 0 0.5rem;
 }
 
 input {

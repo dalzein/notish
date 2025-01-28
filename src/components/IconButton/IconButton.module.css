@@ -1,6 +1,7 @@
 .iconButton {
   background: transparent;
-  color: var(--foreground-secondary);
+  color: var(--foreground);
+  opacity: 0.7;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +12,7 @@
 }
 
 .iconButton:hover {
-  color: var(--foreground);
+  opacity: 1;
 }
 
 .iconButton > svg {

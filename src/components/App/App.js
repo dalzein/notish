@@ -199,31 +199,37 @@ export default function App() {
         userId={userId}
         awaitingAuthRedirectResult={awaitingAuthRedirectResult}
       />
-      <CreateArea
-        onAdd={addNote}
-        tags={[
-          ...new Set(notes.map((note) => note.tag).filter((tag) => tag !== "")),
-        ]}
-        noteLimitReached={notes.length >= noteLimit}
-      />
-      <NoteFilter
-        tags={[
-          ...new Set(notes.map((note) => note.tag).filter((tag) => tag !== "")),
-        ]}
-        currentTagFilter={tagFilter}
-        changeTagFilter={changeTagFilter}
-        hasNotes={notes.length > 0}
-      />
-      <NoteBoard
-        notes={notes.filter(
-          (note) => tagFilter === "all" || note.tag === tagFilter
-        )}
-        onEdit={editNote}
-        syncNoteWithFirestore={syncNoteWithFirestore}
-        onDelete={deleteNote}
-        updateNotePositions={updateNotePositions}
-        startSyncing={startSyncing}
-      />
+      <main>
+        <CreateArea
+          onAdd={addNote}
+          tags={[
+            ...new Set(
+              notes.map((note) => note.tag).filter((tag) => tag !== "")
+            ),
+          ]}
+          noteLimitReached={notes.length >= noteLimit}
+        />
+        <NoteFilter
+          tags={[
+            ...new Set(
+              notes.map((note) => note.tag).filter((tag) => tag !== "")
+            ),
+          ]}
+          currentTagFilter={tagFilter}
+          changeTagFilter={changeTagFilter}
+          hasNotes={notes.length > 0}
+        />
+        <NoteBoard
+          notes={notes.filter(
+            (note) => tagFilter === "all" || note.tag === tagFilter
+          )}
+          onEdit={editNote}
+          syncNoteWithFirestore={syncNoteWithFirestore}
+          onDelete={deleteNote}
+          updateNotePositions={updateNotePositions}
+          startSyncing={startSyncing}
+        />
+      </main>
     </div>
   );
 }

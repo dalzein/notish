@@ -54,30 +54,21 @@ header {
   }
 }
 
-.signOutButton {
+.signOutButton,
+.signInButton {
   font-size: 1rem;
   border-radius: 2.25rem;
   height: 2.25rem;
-  padding: 0 1rem;
   color: var(--foreground);
+  border: 1px solid var(--accent-3);
   background: var(--accent-1);
-  border: 1px solid var(--accent-2);
-}
-
-.signOutButton:hover {
-  background: var(--accent-2);
+  padding: 0 1rem;
 }
 
 .signInButton {
-  height: 2.25rem;
-  border-radius: 2.25rem;
-  background: var(--accent-1);
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0 1rem;
-  color: var(--foreground);
-  border: 1px solid var(--accent-2);
 }
 
 .gIcon {
@@ -85,6 +76,7 @@ header {
   width: 1.25rem;
 }
 
+.signOutButton:hover,
 .signInButton:hover {
   background: var(--accent-2);
 }

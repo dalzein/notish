@@ -173,8 +173,8 @@ export default function Note({
     <div
       className="note"
       style={{
-        background: `rgba(var(--${note.colour}), 0.1)`,
-        border: `1px solid rgba(var(--${note.colour}), 0.5)`,
+        background: `hsl(var(--${note.colour}) / 20%)`,
+        border: `1px solid hsl(var(--${note.colour}) / 60%)`,
         zIndex: zIndex,
       }}
       onMouseEnter={() => setMouseOver(true)}
@@ -214,7 +214,7 @@ export default function Note({
           name="tag"
           icon="tag"
           setDropdownMenuStatus={setDropdownMenuStatus}
-          width="20rem"
+          width="22rem"
         >
           <TagSelector
             tags={tags}

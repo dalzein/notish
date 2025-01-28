@@ -1,11 +1,11 @@
 .guide {
-  margin: 5rem;
+  margin: 4rem;
 }
 
 .guide h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-bottom: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .guide p {
@@ -16,6 +16,6 @@
 
 @media (max-width: 768px) {
   .guide {
-    margin: 3rem;
+    margin: 4rem 2rem 2rem;
   }
 }
