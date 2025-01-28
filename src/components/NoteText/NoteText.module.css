@@ -27,6 +27,7 @@
 
 .content {
   height: 1rem;
-  font-size: 1rem;
+  font-size: 0.875rem;
   background: var(--transparent);
+  line-height: 1.5;
 }
