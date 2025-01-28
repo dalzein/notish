@@ -18,7 +18,7 @@
   margin: 0.5rem;
   font-size: 0.875rem;
   text-decoration: none;
-  border: none;
+  border: 1px solid var(--accent-3);
   background: var(--accent-1);
   color: var(--foreground-secondary);
   height: 2.25rem;
@@ -32,7 +32,7 @@
 .noteFilter button.active,
 .noteFilter button:hover {
   color: var(--foreground);
-  background: var(--accent-3);
+  background: var(--accent-2);
 }
 
 .noteFilter svg {
