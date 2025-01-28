@@ -26,7 +26,7 @@
   color: var(--foreground);
   border-radius: 2.25rem;
   flex-shrink: 0;
-  border: 1px solid var(--accent-3);
+  border: 1px solid var(--accent-4);
 }
 
 .addTagButton > svg {
